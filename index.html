@@ -1,46 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <title>Yummy</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/logo.png">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/all.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="img/logo.png" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Playfair+Display"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/nav.css" />
+  </head>
 
-<body>
+  <body>
+    <!-- nav -->
+    <nav id="sideNav">
+      <div class="nav-links d-flex flex-column justify-content-between p-4">
+        <ul class="list-unstyled mt-4">
+          <li><a href="index.html">Search</a></li>
+          <li><a href="#">Categories</a></li>
+          <li><a href="#">Area</a></li>
+          <li><a href="#">Ingredients</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <div class="footer-sidebar">
+          <div class="icons mb-2">
+            <i class="fa-brands fa-facebook-f me-2"></i>
+            <i class="fa-brands fa-twitter me-2"></i>
+            <i class="fa-solid fa-globe"></i>
+          </div>
+          <p class="small">Copyright © 2025 All Rights Reserved.</p>
+        </div>
+      </div>
 
+      <div
+        class="nav-header bg-dark text-black d-flex flex-column justify-content-between align-items-center py-3"
+      >
+        <img src="img/logo.png" width="40" alt="logo" />
+        <i
+          id="toggleBtn"
+          class="fa-solid fa-bars fs-2 cursor-pointer text-white"
+        ></i>
+        <div class="bottom-icons d-flex flex-column gap-2">
+          <i class="fa-solid fa-globe"></i>
+          <i class="fa-solid fa-share-nodes"></i>
+        </div>
+      </div>
+    </nav>
     <a href="ingredient.html">Ingredient</a>
 
     <!--search-->
-    <div class="container my-5" id="cardsSection">
-        <div class="row g-3 mb-4">
-            <div class="col-md-6 ">
-                <input class="form-control" id="searchByNameInput" placeholder="Search By Name" />
-            </div>
-            <div class="col-md-6">
-                <input class="form-control" id="searchByLetterInput" placeholder="Search By First Letter" maxlength="1"
-                    list="lettersList" />
-            </div>
+    <div class="container ps-5" id="cardsSection">
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          <input
+            class="form-control"
+            id="searchByNameInput"
+            placeholder="Search By Name"
+          />
         </div>
+        <div class="col-md-6">
+          <input
+            class="form-control"
+            id="searchByLetterInput"
+            placeholder="Search By First Letter"
+            maxlength="1"
+            list="lettersList"
+          />
+        </div>
+      </div>
 
-        <div id="results" class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3"></div>
-
+      <div
+        id="results"
+        class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3"
+      ></div>
     </div>
 
     <!-- Section  Meal Detasils -->
-    <div class="container w-75 my-1 py-2 mt-5 position-relative" id="mealSection" style="display:none;">
-        <button id="backBtn" class="btn btn-secondary mb-3">Back</button>
-        <div id="mealDetails" class="row"></div>
+    <div
+      class="container w-75 my-1 py-2 mt-5 position-relative"
+      id="mealSection"
+      style="display: none"
+    >
+      <button id="backBtn" class="btn btn-secondary mb-3">Back</button>
+      <div id="mealDetails" class="row"></div>
     </div>
-
 
     <!--script-->
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="fatma/script.js"></script>
     <script src="js/main.js"></script>
-</body>
-
+  </body>
 </html>

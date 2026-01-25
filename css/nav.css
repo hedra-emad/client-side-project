@@ -1,0 +1,54 @@
+#sideNav {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: -250px;
+
+  display: flex;
+  z-index: 9999;
+  transition: left 0.5s ease;
+}
+
+.nav-links {
+  width: 250px;
+  background-color: #9a9696;
+}
+
+.nav-links ul li {
+  padding: 12px 0;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.nav-header {
+  width: 50px;
+}
+
+#toggleBtn {
+  cursor: pointer;
+}
+
+#sideNav.open {
+  left: 0;
+}
+
+.nav-links ul li a {
+  color: rgb(247, 243, 243);
+  font-size: 1.2rem;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
+
+.nav-links ul li:hover a {
+  color: #463e3e;
+}
+
+.icons i, .nav-links ul li a {
+  transition: 0.5s ease;
+}
+
+.icons i:hover {
+color: #fff;
+}
