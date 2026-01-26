@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Yummy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <link href="/client-side-project/mycss/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/client-side-project/mycss/style.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <nav id="sideNav">
+        <div class="nav-menu">
+            <ul>
+                <li>Search</li>
+                <li>Categories</li>
+                <li>Area</li>
+                <li>Ingredients</li>
+                <li>Contact Us</li>
+            </ul>
+            <div class="nav-footer">
+                <div class="social-icons mb-3">
+                    <a href="https://facebook.com" target="_blank" class="text-white me-3"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="text-white me-3"><i
+                            class="fab fa-twitter"></i></a>
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+                <p class="small text-secondary m-0" style="font-size: 11px;">© 2025 All Rights Reserved.</p>
+            </div>
+        </div>
+
+        <div class="nav-header">
+            <img src="/client-side-project/image/logo.png" alt="Logo">
+            <i class="fa-solid fa-bars" id="toggleBtn"></i>
+            <div class="header-icons text-center text-secondary" style="font-size: 14px;">
+                <i class="fa-solid fa-globe mb-3 d-block"></i>
+                <i class="fa-solid fa-share-nodes"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content" id="mainContent">
+
+        <!-- 1. Hero -->
+        <div class="hero">
+            <div class="text-center px-3">
+                <h1 class="brand-logo display-2">Yummy<span>😋</span></h1>
+                <p class="fs-5 text-light-50 mb-5 fw-light">Discover Delicious Meals From Around The World</p>
+                <button class="btn-main">Get Started</button>
+            </div>
+        </div>
+
+        <!-- 2. About -->
+        <div class="section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 mb-5 mb-md-0 text-center">
+                        <img src="/client-side-project/image/about.png" class="img-fluid w-100">
+                    </div>
+                    <div class="col-md-6 ps-md-5">
+                        <h2 class="h1 fw-bold mb-4">About <span class="text-warning">Yummy</span></h2>
+                        <p class="text-secondary">Yummy is a modern food discovery platform built for people who love
+                            exploring new meals and flavors from around the world.</p>
+                        <p class="text-secondary small">Using real data from a trusted public API, we make cooking
+                            simple and enjoyable for everyone.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Explore -->
+        <div class="section section-dark-alt">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 pe-md-5">
+                        <h2 class="h1 fw-bold mb-4">Explore <span class="text-warning">Real Recipes</span></h2>
+                        <p class="text-secondary">All meals are fetched from a real API, which means new meals appear
+                            every time you visit. Explore different cultures today.</p>
+                    </div>
+                    <div class="col-md-6 mt-5 mt-md-0 text-center">
+                        <img src="/client-side-project/image/section.png" class="img-fluid w-100  ">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Categories -->
+        <div class="section">
+            <div class="container">
+                <h2 class="text-center h2 fw-bold mb-5">Meal Categories</h2>
+                <div class="row g-4" id="categories"></div>
+            </div>
+        </div>
+
+
+        <div class="section section-dark-alt text-center">
+            <div class="container">
+                <h2 class="mb-5 h2 fw-bold">Feeling Hungry?🍔</h2>
+                <button class="btn-main" onclick="getRandomMeal()">Get Random Meal</button>
+                <div id="randomMeal" class="row justify-content-center mt-5"></div>
+            </div>
+        </div>
+
+        <!-- Footer  -->
+        <footer>
+            <div class="container">
+                <div class="row g-5">
+
+                    <div class="col-md-5">
+                        <h3 class="brand-logo mb-4">Yummy<span>😋</span></h3>
+                        <p class="small pe-md-5">
+                            Your ultimate destination to explore global recipes and culinary secrets from every corner
+                            of the world. Cook like a pro with our easy-to-follow meal guides.
+                        </p>
+                        <div class="footer-social-links">
+                            <a href="#" class="fb"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="tw"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="inst"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <h5 class="footer-title">Quick Links</h5>
+                        <ul class="footer-links">
+                            <li><a href="#">Search Meals</a></li>
+                            <li><a href="#">Categories</a></li>
+                            <li><a href="#">Area</a></li>
+                            <li><a href="#">Ingredients</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <h5 class="footer-title">Contact Info</h5>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-location-dot"></i>
+                            <span>Egypt-Qena</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 234 567 890</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>hello@yummy.com</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="copyright-bar">
+                    © 2026 YUMMY 😋 | ALL RIGHTS RESERVED. DESIGNED WITH ❤️ FOR FOOD LOVERS.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
