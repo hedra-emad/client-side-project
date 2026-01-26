@@ -34,6 +34,12 @@
     { "strArea": "Tunisian", "country": "Tunisia", "code": "tn", "flag": "https://flagcdn.com/w320/tn.png" },
     { "strArea": "Turkish", "country": "Turkey", "code": "tr", "flag": "https://flagcdn.com/w320/tr.png" },
     { "strArea": "Ukrainian", "country": "Ukraine", "code": "ua", "flag": "https://flagcdn.com/w320/ua.png" },
+    {
+  "strArea": "Unknown",
+  "country": "Unknown",
+  "code": "un",
+  "flag": "https://upload.wikimedia.org/wikipedia/commons/1/19/Unknown_flag.svg"
+},
     { "strArea": "Uruguayan", "country": "Uruguay", "code": "uy", "flag": "https://flagcdn.com/w320/uy.png" },
     { "strArea": "Venezulan", "country": "Venezuela", "code": "ve", "flag": "https://flagcdn.com/w320/ve.png" },
     { "strArea": "Vietnamese", "country": "Vietnam", "code": "vn", "flag": "https://flagcdn.com/w320/vn.png" }
