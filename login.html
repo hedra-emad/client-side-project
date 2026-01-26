@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LogIn</title>
+    <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+  </head>
+  <body>
+    <section class="hero">
+      <div class="overlay" aria-hidden="true"></div>
+      <div class="login-card" role="main" aria-labelledby="loginTitle">
+        <form action="./home.html">
+          <h1>Welcome Back!</h1>
+          <h2 id="loginTitle">SIGN IN</h2>
+          <input
+            id="username"
+            type="text"
+            placeholder="Enter Your Username"
+            aria-label="Email"
+            required
+          />
+          <input
+            id="password"
+            type="password"
+            placeholder="Enter Your Password"
+            aria-label="Password"
+            required
+          />
+          <button type="button" onclick="login()">Contuniue</button>
+          <p id="error" class="alert alert-danger d-none"></p>
+
+          <p><a href="#">Forget Password ?</a></p>
+          <p><a href="./registration.html">or New Account !</a></p>
+        </form>
+      </div>
+    </section>
+    <script src="js/login.js"></script>
+  </body>
+</html>
