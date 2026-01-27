@@ -3,22 +3,21 @@ const toggleBtn = document.getElementById("toggleBtn");
 const mainContent = document.getElementById("mainContent");
 
 toggleBtn.onclick = function () {
-    sideNav.classList.toggle("open");
-    if (sideNav.classList.contains("open")) {
-        toggleBtn.classList.replace("fa-bars", "fa-xmark");
-        mainContent.style.marginLeft = "320px";
-    } else {
-        toggleBtn.classList.replace("fa-xmark", "fa-bars");
-        mainContent.style.marginLeft = "70px";
-    }
+  sideNav.classList.toggle("open");
+  if (sideNav.classList.contains("open")) {
+    toggleBtn.classList.replace("fa-bars", "fa-xmark");
+    mainContent.style.marginLeft = "320px";
+  } else {
+    toggleBtn.classList.replace("fa-xmark", "fa-bars");
+    mainContent.style.marginLeft = "70px";
+  }
 };
-
-
-
 
 async function getCategories() {
   try {
-    let response = await fetch("https://www.themealdb.com/api/json/v1/1/categories.php");
+    let response = await fetch(
+      "https://www.themealdb.com/api/json/v1/1/categories.php"
+    );
     let data = await response.json();
 
     let box = "";
@@ -38,7 +37,6 @@ async function getCategories() {
     }
 
     document.getElementById("categories").innerHTML = box;
-
   } catch (error) {
     console.log("Error fetching categories", error);
   }
@@ -46,21 +44,18 @@ async function getCategories() {
 
 getCategories();
 
-
-
-
-    //  API 
+//  API
 
 function getRandomMeal() {
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://www.themealdb.com/api/json/v1/1/random.php", true);
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "https://www.themealdb.com/api/json/v1/1/random.php", true);
 
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            var data = JSON.parse(xhr.responseText);
-            var meal = data.meals[0];
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      var data = JSON.parse(xhr.responseText);
+      var meal = data.meals[0];
 
-            document.getElementById("randomMeal").innerHTML = `
+      document.getElementById("randomMeal").innerHTML = `
                 <div class="col-md-6 col-lg-4">
                     <a href="details.html?id=${meal.idMeal}" class="text-decoration-none">
                         <div class="card bg-dark text-white border-0 shadow-lg overflow-hidden rounded-4">
@@ -72,16 +67,20 @@ function getRandomMeal() {
                         </div>
                     </a>
                 </div>`;
-        } else {
-            console.error("Error fetching meal:", xhr.status);
-            document.getElementById("randomMeal").innerHTML = `<p class="text-danger">Failed to fetch meal. Try again!</p>`;
-        }
-    };
+    } else {
+      console.error("Error fetching meal:", xhr.status);
+      document.getElementById(
+        "randomMeal"
+      ).innerHTML = `<p class="text-danger">Failed to fetch meal. Try again!</p>`;
+    }
+  };
 
-    xhr.onerror = function() {
-        console.error("Request failed");
-        document.getElementById("randomMeal").innerHTML = `<p class="text-danger">Request failed. Try again!</p>`;
-    };
+  xhr.onerror = function () {
+    console.error("Request failed");
+    document.getElementById(
+      "randomMeal"
+    ).innerHTML = `<p class="text-danger">Request failed. Try again!</p>`;
+  };
 
-    xhr.send();
+  xhr.send();
 }

@@ -1,72 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Yummy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/home.css" />
+  </head>
 
-<head>
-  <title>Yummy</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="img/logo.png" />
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/nav.css" />
-</head>
-
-<body>
-  <!-- nav -->
-  <nav id="sideNav">
-    <div class="nav-links d-flex flex-column justify-content-between p-4">
-      <ul class="list-unstyled mt-4">
-        <li><a href="index.html">Search</a></li>
-        <li><a href="#">Categories</a></li>
-        <li><a href="pages/area.html">Area</a></li>
-        <li><a href="pages/ingredient.html">Ingredients</a></li>
-        <li><a href="#">Contact Us</a></li>
-      </ul>
-      <div class="footer-sidebar">
-        <div class="icons mb-2">
-          <i class="fa-brands fa-facebook-f me-2"></i>
-          <i class="fa-brands fa-twitter me-2"></i>
-          <i class="fa-solid fa-globe"></i>
+  <body>
+    <!-- Sidebar -->
+    <nav id="sideNav">
+      <div class="nav-menu">
+        <ul>
+          <li>Search</li>
+          <li>Categories</li>
+          <li>Area</li>
+          <li>Ingredients</li>
+          <li>Contact Us</li>
+        </ul>
+        <div class="nav-footer">
+          <div class="social-icons mb-3">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              class="text-white me-3"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              class="text-white me-3"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <i class="fa-solid fa-globe"></i>
+          </div>
+          <p class="small m-0" style="font-size: 11px">
+            © 2025 All Rights Reserved.
+          </p>
         </div>
-        <p class="small">Copyright © 2025 All Rights Reserved.</p>
       </div>
+
+      <div class="nav-header">
+        <img src="../img/logo.png" alt="Logo" />
+        <i class="fa-solid fa-bars" id="toggleBtn"></i>
+        <div class="header-icons text-center" style="font-size: 14px">
+          <i class="fa-solid fa-globe mb-3 d-block"></i>
+          <i class="fa-solid fa-share-nodes"></i>
+        </div>
+      </div>
+    </nav>
+
+    <div class="main-content" id="mainContent">
+      <!-- 1. Hero -->
+      <div class="hero">
+        <div class="text-center px-3">
+          <h1 class="brand-logo display-2">Yummy<span>😋</span></h1>
+          <p class="fs-5 text-light-50 mb-5 fw-light">
+            Discover Delicious Meals From Around The World
+          </p>
+          <button class="btn-main">Get Started</button>
+        </div>
+      </div>
+
+      <!-- 2. About -->
+      <div class="section">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="img-hover col-md-6 mb-5 mb-md-0 text-center">
+              <img src="../image/about.png" class="img-fluid w-100" />
+            </div>
+            <div class="col-md-6 ps-md-5">
+              <h2 class="h1 fw-bold mb-4">
+                About <span class="text-warning">Yummy</span>
+              </h2>
+              <p class="">
+                Yummy is a modern food discovery platform built for people who
+                love exploring new meals and flavors from around the world.
+              </p>
+              <p class="small">
+                Using real data from a trusted public API, we make cooking
+                simple and enjoyable for everyone.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Explore -->
+      <div class="section section-dark-alt">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6 pe-md-5">
+              <h2 class="h1 fw-bold mb-4">
+                Explore <span class="text-warning">Real Recipes</span>
+              </h2>
+              <p class="">
+                All meals are fetched from a real API, which means new meals
+                appear every time you visit. Explore different cultures today.
+              </p>
+            </div>
+            <div class="img-hover col-md-6 mt-5 mt-md-0 text-center">
+              <img src="../image/section.png" class="img-fluid w-100" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Categories -->
+      <div class="section">
+        <div class="container">
+          <h2 class="text-center h2 fw-bold mb-5">Meal Categories</h2>
+          <div class="row g-4" id="categories"></div>
+        </div>
+      </div>
+
+      <div class="section section-dark-alt text-center">
+        <div class="container">
+          <h2 class="mb-5 h2 fw-bold">Feeling Hungry?🍔</h2>
+          <button class="btn-main" onclick="getRandomMeal()">
+            Get Random Meal
+          </button>
+          <div id="randomMeal" class="row justify-content-center mt-5"></div>
+        </div>
+      </div>
+
+      <!-- Footer  -->
+      <footer>
+        <div class="container">
+          <div class="row g-5">
+            <div class="col-md-5">
+              <h3 class="brand-logo mb-4">Yummy<span>😋</span></h3>
+              <p class="small pe-md-5">
+                Your ultimate destination to explore global recipes and culinary
+                secrets from every corner of the world. Cook like a pro with our
+                easy-to-follow meal guides.
+              </p>
+              <div class="footer-social-links">
+                <a href="#" class="fb"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="tw"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="inst"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <h5 class="footer-title">Quick Links</h5>
+              <ul class="footer-links">
+                <li><a href="#">Search Meals</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">Area</a></li>
+                <li><a href="#">Ingredients</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+
+            <div class="col-md-4">
+              <h5 class="footer-title">Contact Info</h5>
+              <div class="footer-contact-item">
+                <i class="fas fa-location-dot"></i>
+                <span>Egypt-Qena</span>
+              </div>
+              <div class="footer-contact-item">
+                <i class="fas fa-phone"></i>
+                <span>+1 234 567 890</span>
+              </div>
+              <div class="footer-contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>hello@yummy.com</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="copyright-bar">
+            © 2026 YUMMY 😋 | ALL RIGHTS RESERVED. DESIGNED WITH ❤️ FOR FOOD
+            LOVERS.
+          </div>
+        </div>
+      </footer>
     </div>
 
-    <div class="nav-header bg-dark text-black d-flex flex-column justify-content-between align-items-center py-3">
-      <img src="img/logo.png" width="40" alt="logo" />
-      <i id="toggleBtn" class="fa-solid fa-bars fs-2 cursor-pointer text-white"></i>
-      <div class="bottom-icons d-flex flex-column gap-2">
-        <i class="fa-solid fa-globe"></i>
-        <i class="fa-solid fa-share-nodes"></i>
-      </div>
-    </div>
-  </nav>
-
-
-  <!--search-->
-  <div class="container ps-5" id="cardsSection">
-    <div class="row g-3 mb-4">
-      <div class="col-md-6">
-        <input class="form-control" id="searchByNameInput" placeholder="Search By Name" />
-      </div>
-    </div>
-
-    <div id="mealsResult" class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3"></div>
-  </div>
-
-  <!-- Section  Meal Detasils -->
-  <div class="container w-75 my-1 py-2 mt-5 position-relative" id="mealSection" style="display: none">
-
-    <div id="mealDetails" class="row"></div>
-  </div>
-
-  <!--script-->
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="fatma/script.js"></script>
-  <script type="module" src="/utils.js"></script>
-  <script type="module" src="/js/meal.js"></script>
-  <script type="module" src="js/main.js"></script>
-</body>
-
+    <script src="js/home.js"></script>
+  </body>
 </html>

@@ -35,7 +35,7 @@ export function createMeal(meal, highlight) {
   var regex = new RegExp(searchByNameInput.value, "i");
   return `<a href="pages/meal.html?id=${meal.idMeal}">
   <div class="col" >
-  <div class="meal-card rounded-3" >
+  <div class="meal-card" >
     <div class="meal-img-box">
       <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
      
@@ -47,7 +47,7 @@ export function createMeal(meal, highlight) {
         highlight
           ? meal.strMeal.replace(
               regex,
-              (match) => `<span class="yellow text-white">${match}</span>`,
+              (match) => `<span class="yellow text-white">${match}</span>`
             )
           : meal.strMeal
       }</h5>

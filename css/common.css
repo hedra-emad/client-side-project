@@ -1,0 +1,29 @@
+:root {
+  --yellow: #f9c004;
+  --black: #0b0b0b;
+  --red: rgb(224, 6, 6);
+  --dark-gray: #121212;
+  --light-gray: #a19a9a;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+  background-color: var(--dark-gray);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+i {
+  cursor: pointer;
+}

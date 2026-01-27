@@ -1,0 +1,145 @@
+/* =====================
+   Page Background
+===================== */
+body {
+  background-color: var(--dark-gray);
+  color: #f1f1f1;
+  font-family: "Poppins", sans-serif;
+}
+
+/* =====================
+     Meal Container
+  ===================== */
+#mealSection {
+  padding-top: 80px;
+  padding-bottom: 60px;
+}
+
+/* =====================
+     Meal Image & Title
+  ===================== */
+#mealDetails img {
+  border-radius: 20px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+  margin-bottom: 15px;
+}
+
+#mealDetails h1 {
+  color: var(--yellow);
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+#mealDetails h2,
+#mealDetails h3 {
+  color: #f1f1f1;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* =====================
+     Instructions
+  ===================== */
+#mealDetails p {
+  line-height: 1.7;
+  color: #ccc;
+  margin-bottom: 10px;
+  text-align: justify;
+}
+
+/* =====================
+     Recipes / Ingredients
+  ===================== */
+#recipes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#recipes li {
+  background-color: #222;
+  padding: 8px 12px;
+  border-radius: 12px;
+  color: #f1f1f1;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: var(--transition);
+}
+
+#recipes li:hover {
+  background-color: var(--yellow);
+  color: #000;
+  transform: translateY(-2px);
+}
+
+/* =====================
+     Buttons
+  ===================== */
+#mealDetails .btn {
+  border-radius: 50px;
+  font-weight: 600;
+  padding: 10px 25px;
+  margin-right: 10px;
+  margin-top: 15px;
+  transition: var(--transition);
+}
+
+#mealDetails .btn-success {
+  background-color: var(--yellow);
+  border: 1.5px solid var(--yellow);
+  color: #000;
+}
+
+#mealDetails .btn-success:hover {
+  background-color: #f1f1f1;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(249, 192, 4, 0.35);
+}
+
+#mealDetails .youtube {
+  background-color: var(--red);
+  border: 1.5px solid var(--red);
+  color: #fff;
+}
+
+#mealDetails .youtube:hover {
+  background-color: #e63946;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(224, 6, 6, 0.35);
+}
+
+/* =====================
+     Columns Spacing
+  ===================== */
+.myM {
+  margin-bottom: 30px;
+}
+
+/* =====================
+     Responsive
+  ===================== */
+@media (max-width: 768px) {
+  #mealDetails .col-md-4,
+  #mealDetails .col-md-8 {
+    text-align: center;
+  }
+
+  #mealDetails .col-md-8 {
+    margin-top: 20px;
+  }
+
+  #recipes {
+    justify-content: center;
+  }
+}
+#mealDetails p {
+  background-color: #1f1f1f;
+  padding: 15px;
+  border-radius: 15px;
+}

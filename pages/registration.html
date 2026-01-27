@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SignUP</title>
     <!-- <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="css/registration.css" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/registration.css" />
   </head>
   <body>
     <section class="hero">
       <div class="overlay" aria-hidden="true"></div>
       <div class="signup-card" role="main" aria-labelledby="signupTitle">
-        <form action="./login.html" id="signupForm">
-          <h1>Welcome To <span style="color: #ebbe0c">Yummy!</span></h1>
-          <h2 id="signupTitle">Create New Account</h2>
+        <form id="signupForm">
+          <h1 class="brand-logo">Yummy<span>!</span></h1>
           <input
             type="text"
             placeholder="Enter Username"
@@ -46,7 +46,10 @@
             required
             name="password"
           />
-          <p>Already have an account? <a href="login.html">Login</a></p>
+          <p>
+            Already have an account?
+            <a href="login.html" class="login">Login</a>
+          </p>
 
           <p id="error" class="alert alert-danger d-none"></p>
           <button type="submit">Submit</button>
