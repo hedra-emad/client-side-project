@@ -1,57 +1,61 @@
-// import getMealDetails from "../utils .js";
+import { getData } from "../utils.js";
 
-let results = document.getElementById("results");
+const data = window.location.pathname.split("/");
+getData(data);
 
-const params = new URLSearchParams(window.location.search);
-const area = params.get("ingName");
+// let results = document.getElementById("results");
 
-async function getMeals(area) {
-  let res = await fetch(
-    `https://www.themealdb.com/api/json/v1/1/filter.php?i=${area}`,
-  );
-  let data = await res.json();
-  displayMeals(data.meals);
-}
+// const params = new URLSearchParams(window.location.search);
+// console.log(params);
+// const area = params.get("area");
 
-let flags = [];
-fetch("../data/areas.json")
-  .then((res) => res.json())
-  .then((data) => {
-    flags = data.meals;
-    console.log(flags);
-  })
-  .catch((err) => console.error(err));
+// async function getMeals(area) {
+//   let res = await fetch(
+//     `https://www.themealdb.com/api/json/v1/1/filter.php?i=${area}`,
+//   );
+//   let data = await res.json();
+//   displayMeals(data.meals);
+// }
 
-async function getArea() {
-  let areas = await fetch(
-    `https://www.themealdb.com/api/json/v1/1/list.php?a=list`,
-  );
+// let flags = [];
+// fetch("../data/areas.json")
+//   .then((res) => res.json())
+//   .then((data) => {
+//     flags = data.meals;
+//     console.log(flags);
+//   })
+//   .catch((err) => console.error(err));
 
-  areas = await areas.json();
-  console.log(areas);
-  displayArea(areas);
-}
+// async function getArea() {
+//   let areas = await fetch(
+//     `https://www.themealdb.com/api/json/v1/1/list.php?a=list`,
+//   );
 
-function displayArea(areas) {
-  let str = "";
-  for (let i = 0; i < areas.meals.length; i++) {
-    str += `<a href="meals.html?ingName=${areas.meals[i].strArea}">
-    <div class="col">
-  <div class="area-card" data-name=${areas.meals[i].strArea} >
-    <div class="area-img-box">
-      <img src="${flags[i].flag}" alt="${areas.meals[i].strArea}">
-    </div>
+//   areas = await areas.json();
+//   console.log(areas);
+//   displayArea(areas);
+// }
 
-    <div class="area-info">
-      <h5>${areas.meals[i].strArea}</h5>
-    </div>
-  </div>
-</div>
-    </a>
-  `;
-  }
+// function displayArea(areas) {
+//   let str = "";
+//   for (let i = 0; i < areas.meals.length; i++) {
+//     str += `<a href="meals.html?area=${areas.meals[i].strArea}">
+//     <div class="col">
+//   <div class="area-card" data-name=${areas.meals[i].strArea} >
+//     <div class="area-img-box">
+//       <img src="${flags[i].flag}" alt="${areas.meals[i].strArea}">
+//     </div>
 
-  results.innerHTML = str;
-}
+//     <div class="area-info">
+//       <h5>${areas.meals[i].strArea}</h5>
+//     </div>
+//   </div>
+// </div>
+//     </a>
+//   `;
+//   }
 
-getArea();
+//   results.innerHTML = str;
+// }
+
+// getArea();

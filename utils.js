@@ -6,12 +6,12 @@ export default async function getMealDetails(mealID) {
   meal = await meal.json();
 
   const mealObj = meal.meals[0];
-  displayMeal(mealObj);
+  displayMealDetails(mealObj);
 }
 
 let mealDetails = document.getElementById("mealDetails");
 
-async function displayMeal(mealObj) {
+export function displayMealDetails(mealObj) {
   let recipes = "";
   for (let i = 1; i <= 20; i++) {
     if (mealObj[`strIngredient${i}`]) {
@@ -42,4 +42,89 @@ async function displayMeal(mealObj) {
 `;
 
   mealDetails.innerHTML = html;
+}
+
+export function displayMeals(meals) {
+  let str = "";
+
+  meals.forEach((meal) => {
+    str += `
+     <a href="meal.html?id=${meal.idMeal}">
+  <div class="col" >
+  <div class="meal-card rounded-3" >
+    <div class="meal-img-box">
+      <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+    </div>
+    <div class="meal-info">
+     <div>
+      <h5>${meal.strMeal}</h5>
+      <p>${meal.strArea} • ${meal.strCategory}</p>
+     </div>
+       <div>
+       <span class="fav-icon">
+      <i class="fa-solid fa-heart"></i>
+      </span>
+       </div>
+    </div>
+  </div>
+</div>
+  </a>
+    `;
+  });
+
+  mealsResult.innerHTML = str;
+}
+
+//--------------------------------------------------------------------------
+const dataResult = document.getElementById("dataResult");
+
+function displayData(meals) {
+  let str = "";
+
+  meals.forEach((meal) => {
+    str += `
+      <a href="meals.html?ingName=${meal.strIngredient || meal.strArea || meal.strCategory}">
+        <div class="col">
+          <div class="ingredient-card rounded-3">
+            <div class="ingredient-img-box">
+              <img 
+                src="https://www.themealdb.com/images/ingredients/${meal.strIngredient}.png"
+                alt="${meal.strIngredient || meal.strArea || meal.strCategory}"
+              >
+            </div>
+            <div class="ingredient-info">
+              <h5>${meal.strIngredient || meal.strArea || meal.strCategory}</h5>
+              ${meal.strDescription ? `<p>${meal.strDescription.slice(0, 100)}</p> ` : ""}
+            </div>
+          </div>
+        </div>
+      </a>
+    `;
+  });
+
+  dataResult.innerHTML = str;
+}
+
+export async function getData(data) {
+  if (data[2] === "ingredient.html") {
+    const res = await fetch(
+      "https://www.themealdb.com/api/json/v1/1/list.php?i=list",
+    );
+    const resData = await res.json();
+    displayData(resData.meals.slice(0, 20));
+  } else if (data[2] === "area.html") {
+    const res = await fetch(
+      "https://www.themealdb.com/api/json/v1/1/list.php?a=list",
+    );
+    const resData = await res.json();
+    console.log(resData);
+    displayData(resData.meals);
+  } else if (data[2] === "categories.html") {
+    const res = await fetch(
+      "https://www.themealdb.com/api/json/v1/1/list.php?c=list",
+    );
+    const resData = await res.json();
+    console.log(resData);
+    displayData(resData.meals);
+  }
 }

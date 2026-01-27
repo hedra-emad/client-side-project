@@ -44,38 +44,38 @@ function showLoginAlert() {
 
 function MankeFavorite() {
   for (let meal of meals) {
-    let FavoriteMeals = document.getElementById('fav-' + meal.idMeal);
+    let FavoriteMeals = document.getElementById("fav-" + meal.idMeal);
 
     if (FavoriteMeals) {
       FavoriteMeals.onclick = function (e) {
-        e.preventDefault(); 
-        e.stopPropagation(); 
+        e.preventDefault();
+        e.stopPropagation();
 
         const isUserLoggedIn = localStorage.getItem("loggedUser");
         if (!isUserLoggedIn) {
           showLoginAlert();
-          return; 
+          return;
         }
-        const key = 'fav' + meal.idMeal;
+        const key = "fav" + meal.idMeal;
         if (localStorage.getItem(key)) {
           localStorage.removeItem(key);
-          FavoriteMeals.classList.remove('active');
+          FavoriteMeals.classList.remove("active");
         } else {
           localStorage.setItem(key, meal.idMeal);
-          FavoriteMeals.classList.add('active');
+          FavoriteMeals.classList.add("active");
         }
       };
     }
   }
 }
 
-export function createMeal(meal, highlight) {
+export function createMeal(meal) {
   var regex = new RegExp(searchByNameInput.value, "i");
   const isUserLoggedIn = localStorage.getItem("loggedUser");
   var activeClass = "";
   if (isUserLoggedIn) {
-  const isFav = localStorage.getItem('fav' + meal.idMeal);
-  activeClass = isFav ? 'active' : '';
+    const isFav = localStorage.getItem("fav" + meal.idMeal);
+    activeClass = isFav ? "active" : "";
   }
   return `<a href="pages/meal.html?id=${meal.idMeal}">
   <div class="col" >
@@ -87,14 +87,7 @@ export function createMeal(meal, highlight) {
 
     <div class="meal-info">
      <div>
-      <h5>${
-        highlight
-          ? meal.strMeal.replace(
-              regex,
-              (match) => `<span class="yellow text-white">${match}</span>`,
-            )
-          : meal.strMeal
-      }</h5>
+      <h5>${meal.strMeal}</h5>
       <p>${meal.strArea} • ${meal.strCategory}</p>
      </div>
        <div>
