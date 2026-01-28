@@ -51,6 +51,7 @@ export function displayMeals(meals) {
   let str = "";
 
   meals.forEach((meal) => {
+    console.log(meal.strMeal);
     str += `
      <a href="meal.html?id=${meal.idMeal}">
   <div class="col" >
@@ -61,7 +62,6 @@ export function displayMeals(meals) {
     <div class="meal-info">
      <div>
       <h5>${meal.strMeal}</h5>
-      <p>${meal.strArea} • ${meal.strCategory}</p>
      </div>
        <div>
        <span class="fav-icon">
