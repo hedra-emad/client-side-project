@@ -81,7 +81,6 @@ const dataResult = document.getElementById("dataResult");
 
 function displayData(meals, flags) {
   let str = "";
-
   meals.forEach((meal, i) => {
     str += `
       <a href="meals.html?type=${
@@ -95,18 +94,14 @@ function displayData(meals, flags) {
                   (meal.strIngredient &&
                     `https://www.themealdb.com/images/ingredients/${meal.strIngredient}.png`) ||
                   flags?.meals[i]?.flag ||
-                  ""
+                  meal.strCategoryThumb
                 }"
                 alt="${meal.strIngredient || meal.strArea || ""}"
               >
             </div>
             <div class="ingredient-info">
               <h5>${meal.strIngredient || meal.strArea || meal.strCategory}</h5>
-              ${
-                meal.strDescription
-                  ? `<p>${meal.strDescription.slice(0, 100)}</p> `
-                  : ""
-              }
+              ${`<p>${meal.strIngredient ? meal.strDescription.slice(0, 100) : meal.strCategoryDescription.slice(0, 100)}</p> `}
             </div>
           </div>
         </div>
@@ -129,14 +124,12 @@ export async function getData(data, flags = []) {
       "https://www.themealdb.com/api/json/v1/1/list.php?a=list",
     );
     const resData = await res.json();
-    console.log(resData);
     displayData(resData.meals, flags);
   } else if (data[2] === "categories.html") {
     const res = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/list.php?c=list",
+      "https://www.themealdb.com/api/json/v1/1/categories.php",
     );
     const resData = await res.json();
-    console.log(resData);
-    displayData(resData.meals);
+    displayData(resData.categories);
   }
 }
