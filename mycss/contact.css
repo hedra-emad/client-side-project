@@ -1,0 +1,81 @@
+
+
+
+
+.contact-hero-section {
+    min-height: 100vh;
+    width: 100%;
+
+    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)),
+        url("/client-side-project/image/background.png") center/cover no-repeat fixed;
+    display: flex;
+    align-items: center;
+    padding-top: 130px;
+    padding-bottom: 80px;
+}
+
+
+.contact-form-card {
+    background: #121212;
+    
+    padding: 60px;
+    border-radius: 40px;
+    border: 1px solid #1a1a1a;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+
+.form-label-custom {
+    display: block;
+    color: #666;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.form-control-custom {
+    width: 100%;
+    background-color: #0b0b0b !important;
+    
+    border: 1px solid #222 !important;
+    color: #fff !important;
+    padding: 15px 20px !important;
+    border-radius: 12px !important;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+
+.form-control-custom:focus,
+.form-control-custom:hover {
+    border-color: #f9c004 !important;
+    background-color: #111 !important;
+    box-shadow: 0 0 10px rgba(249, 192, 4, 0.2) !important;
+}
+
+
+.btn-send-message {
+    width: 100%;
+    background: #000;
+    color: #f9c004;
+    border: 1px solid #f9c004;
+    padding: 16px;
+    border-radius: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-send-message:hover {
+    background: #f9c004;
+    color: #000;
+    transform: translateY(-3px);
+   
+}
+
+
+.contact-hero-section p{
+    color: rgb(222, 217, 217) !important ;
+    font-size: 12px;
+}

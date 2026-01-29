@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Yummy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/client-side-project/img/logo.png" />
 
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -14,48 +15,54 @@
     <link href="/client-side-project/mycss/bootstrap.min.css" rel="stylesheet">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/mycss/bootstrap.min.css">
 
-    <link rel="stylesheet" href="/mycss/style.css">
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="/client-side-project/mycss/style.css">
 </head>
 
 <body>
 
-    <!-- Sidebar -->
-    <nav id="sideNav">
-        <div class="nav-menu">
-            <ul>
-                <li>Search</li>
-                <li>Categories</li>
-                <li>Area</li>
-                <li>Ingredients</li>
-                <li>Contact Us</li>
-            </ul>
-            <div class="nav-footer">
-                <div class="social-icons mb-3">
-                    <a href="https://facebook.com" target="_blank" class="text-white me-3"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a href="https://twitter.com" target="_blank" class="text-white me-3"><i
-                            class="fab fa-twitter"></i></a>
-                    <i class="fa-solid fa-globe"></i>
-                </div>
-                <p class="small text-secondary m-0" style="font-size: 11px;">© 2025 All Rights Reserved.</p>
+
+    <nav id="topNav">
+        <div class="container d-flex align-items-center justify-content-between">
+
+
+            <div class="nav-logo">
+                <img src="/client-side-project/image/logo.png" alt="Logo" style="width: 45px; height: auto;">
+                <h3 style="font-size: 20px;" class="brand-logo m-0">Yummy</h3>
             </div>
+
+
+            <div class="nav-menu-center">
+                <ul class="d-flex list-unstyled m-0">
+                    <li>Search</li>
+                    <li>Categories</li>
+                    <li>Area</li>
+                    <li>Ingredients</li>
+                    <li>
+                        <a href="contact.html" style="text-decoration: none; color: inherit;">
+                            Contact Us
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="nav-toggle">
+                <i class="fa-solid fa-bars" id="toggleBtn"></i>
+            </div>
+            <!-- <div class="favourite">
+                <a href="#">❤</a>
+            </div> -->
+            <!-- <button class="btn-login ms-3">Login</button> -->
         </div>
 
-        <div class="nav-header">
-            <img src="/client-side-project/image/logo.png" alt="Logo">
-            <i class="fa-solid fa-bars" id="toggleBtn"></i>
-            <div class="header-icons text-center text-secondary" style="font-size: 14px;">
-                <i class="fa-solid fa-globe mb-3 d-block"></i>
-                <i class="fa-solid fa-share-nodes"></i>
-            </div>
-        </div>
+
     </nav>
 
     <div class="main-content" id="mainContent">
 
-        <!-- 1. Hero -->
+
         <div class="hero">
             <div class="text-center px-3">
                 <h1 class="brand-logo display-2">Yummy<span>😋</span></h1>
@@ -64,7 +71,7 @@
             </div>
         </div>
 
-        <!-- 2. About -->
+
         <div class="section">
             <div class="container">
                 <div class="row align-items-center">
@@ -82,7 +89,7 @@
             </div>
         </div>
 
-        <!-- 3. Explore -->
+
         <div class="section section-dark-alt">
             <div class="container">
                 <div class="row align-items-center">
@@ -98,7 +105,7 @@
             </div>
         </div>
 
-        <!-- 4. Categories -->
+
         <div class="section">
             <div class="container">
                 <h2 class="text-center h2 fw-bold mb-5">Meal Categories</h2>
