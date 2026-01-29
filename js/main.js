@@ -12,7 +12,6 @@ fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=")
   .then((response) => response.json())
   .then((data) => {
     meals = data.meals || [];
-
     display();
 
     searchByNameInput.addEventListener("input", () => {
@@ -55,29 +54,33 @@ function showLoginAlert() {
 }
 
 function MankeFavorite() {
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
   for (let meal of meals) {
-    let FavoriteMeals = document.getElementById("fav-" + meal.idMeal);
+    const favBtn = document.getElementById("fav-" + meal.idMeal);
+    if (!favBtn) continue;
 
-    if (FavoriteMeals) {
-      FavoriteMeals.onclick = function (e) {
-        e.preventDefault();
-        e.stopPropagation();
+    favBtn.classList.toggle("active", favorites.includes(meal.idMeal));
 
-        const isUserLoggedIn = localStorage.getItem("loggedUser");
-        if (!isUserLoggedIn) {
-          showLoginAlert();
-          return;
-        }
-        const key = "fav" + meal.idMeal;
-        if (localStorage.getItem(key)) {
-          localStorage.removeItem(key);
-          FavoriteMeals.classList.remove("active");
-        } else {
-          localStorage.setItem(key, meal.idMeal);
-          FavoriteMeals.classList.add("active");
-        }
-      };
-    }
+    favBtn.onclick = function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const isUserLoggedIn = localStorage.getItem("loggedUser");
+      if (!isUserLoggedIn) {
+        showLoginAlert();
+        return;
+      }
+
+      if (favorites.includes(meal.idMeal)) {
+        favorites = favorites.filter((id) => id !== meal.idMeal);
+        favBtn.classList.remove("active");
+      } else {
+        favorites.push(meal.idMeal);
+        favBtn.classList.add("active");
+      }
+
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    };
   }
 }
 

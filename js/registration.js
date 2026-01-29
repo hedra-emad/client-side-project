@@ -1,23 +1,20 @@
 "use strict";
 
 const form = document.getElementById("signupForm");
-const errorMsg = document.getElementById("error"); // زي login
+const errorMsg = document.getElementById("error");
 
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
 
-  // قراءة القيم
   const username = form.username.value.trim();
   const email = form.email.value.trim();
   const phone = form.phone.value.trim();
   const password = form.password.value.trim();
 
-  // تهيئة رسالة الخطأ
   errorMsg.textContent = "";
   errorMsg.style.color = "red";
-  errorMsg.classList.add("d-none"); // نخفي الرسالة في البداية
+  errorMsg.classList.add("d-none");
 
-  // التحقق من الحقول
   if (!username || !email || !phone || !password) {
     errorMsg.textContent = "Please fill in all fields";
     errorMsg.classList.remove("d-none");
@@ -33,10 +30,7 @@ form.addEventListener("submit", async function (e) {
   const newUser = { username, email, phone, password };
 
   try {
-    // التحقق من البريد مسبقًا
-    const checkResponse = await fetch(
-      `http://localhost:3001/users?email=${email}`,
-    );
+    const checkResponse = await fetch(`/data/users.json?email=${email}`);
     const existingUsers = await checkResponse.json();
 
     if (existingUsers.length > 0) {
@@ -45,7 +39,7 @@ form.addEventListener("submit", async function (e) {
       return;
     }
 
-    const response = await fetch("../data/users.json", {
+    const response = await fetch("/data/users.json", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newUser),
@@ -60,10 +54,10 @@ form.addEventListener("submit", async function (e) {
       JSON.stringify({
         username: newUser.username,
         loginAt: new Date().toISOString(),
-      }),
+      })
     );
     console.log("Redirecting to index...");
-    window.location.href = "index.html";
+    window.location.href = "/index.html";
   } catch (error) {
     errorMsg.textContent = "Something went wrong, try again later";
     errorMsg.classList.remove("d-none");
