@@ -31,7 +31,6 @@ async function login() {
   }
 
   try {
-    // جلب المستخدمين من JSON Server
     const response = await fetch("../data/users.json");
 
     if (!response.ok) throw new Error("Failed to load users");
@@ -40,11 +39,10 @@ async function login() {
 
     const users = data.users;
 
-    // البحث عن المستخدم سواء بالـ username أو email
     const user = users.find(
       (u) =>
         (u.username === usernameOrEmail || u.email === usernameOrEmail) &&
-        u.password === password,
+        u.password === password
     );
 
     if (user) {
@@ -53,7 +51,7 @@ async function login() {
         JSON.stringify({
           username: user.username,
           loginAt: new Date().toISOString(),
-        }),
+        })
       );
 
       window.location.href = "../index.html";
