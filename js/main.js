@@ -28,19 +28,6 @@ function display() {
   displayMeals(filteredMeals);
 }
 
-// function display() {
-//   let inp = searchByNameInput.value.toLowerCase();
-//   let collect = "";
-//   for (let meal of meals) {
-//     if (inp) {
-//       if (meal.strMeal.toLowerCase().includes(inp)) {
-//         collect += displayMeals(meal, true);
-//       }
-//     } else collect += displayMeals(meal);
-//   }
-//   mealsResult.innerHTML = collect;
-//   MankeFavorite();
-// }
 
 //login Alert
 function showLoginAlert() {
@@ -53,7 +40,7 @@ function showLoginAlert() {
   }
 }
 
-function MankeFavorite() {
+function MakeFavorite() {
   let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
   for (let meal of meals) {
     const favBtn = document.getElementById("fav-" + meal.idMeal);
@@ -84,36 +71,3 @@ function MankeFavorite() {
   }
 }
 
-// displayMeals(meal)
-
-// function createMeal(meal) {
-//   const isUserLoggedIn = localStorage.getItem("loggedUser");
-//   var activeClass = "";
-//   if (isUserLoggedIn) {
-//     const isFav = localStorage.getItem("fav" + meal.idMeal);
-//     activeClass = isFav ? "active" : "";
-//   }
-//   return `<a href="meal.html?id=${meal.idMeal}">
-//   <div class="col" >
-//   <div class="meal-card" >
-//     <div class="meal-img-box">
-//       <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-
-//     </div>
-
-//     <div class="meal-info">
-//      <div>
-//       <h5>${meal.strMeal}</h5>
-//       <p>${meal.strArea} • ${meal.strCategory}</p>
-//      </div>
-//        <div>
-//        <span class="fav-icon ${activeClass}" id="fav-${meal.idMeal}">
-//       <i class="fa-solid fa-heart"></i>
-//       </span>
-//        </div>
-//     </div>
-//   </div>
-// </div>
-//   </a>
-//   `;
-// }

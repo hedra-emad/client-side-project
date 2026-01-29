@@ -24,7 +24,7 @@ body {
     left: 0;
     right: 0;
     z-index: 9999;
-    
+
 }
 
 
@@ -32,7 +32,7 @@ body {
     display: flex;
     align-items: center;
     gap: 0px;
-    
+
 }
 
 .nav-logo img {
@@ -69,7 +69,7 @@ body {
 .nav-menu-center ul li:hover {
     color: var(--yellow);
     transform: translateY(-2px);
-    
+
 }
 
 
@@ -84,8 +84,8 @@ body {
 @media (min-width: 992px) {
     #toggleBtn {
         display: none;
-        
-        
+
+
     }
 }
 
@@ -117,7 +117,7 @@ body {
 
     .nav-menu-center ul li:hover {
         transform: none;
-       
+
     }
 }
 
@@ -149,12 +149,12 @@ body {
 .btn-login {
     background-color: transparent;
     border: 1px solid var(--yellow);
-    
+
     color: var(--yellow);
-    
+
     padding: 6px 20px;
     border-radius: 20px;
-    
+
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
@@ -166,9 +166,9 @@ body {
 .btn-login:hover {
     background-color: var(--yellow);
     color: #000;
-   
+
     transform: translateY(-2px);
-    
+
     box-shadow: 0 4px 10px rgba(249, 192, 4, 0.3);
 }
 
@@ -204,7 +204,7 @@ body {
 .hero {
     height: 100vh;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url("/client-side-project/image/background.png") center/cover no-repeat;
+        url("/img/background.png") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -220,7 +220,7 @@ body {
 }
 
 .section p {
-   color: var(--white) !important;
+    color: var(--white) !important;
 }
 
 .section-dark-alt {
@@ -353,5 +353,5 @@ footer {
 
 footer .brand-logo {
     margin-bottom: 20px !important;
-    
+
 }

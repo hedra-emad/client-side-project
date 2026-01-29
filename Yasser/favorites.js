@@ -1,4 +1,5 @@
-let results = document.getElementById("results");
+import { displayMeals } from "../utils.js";
+
 let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
 favorites.forEach((id) => {
@@ -11,26 +12,12 @@ favorites.forEach((id) => {
     .then((data) => {
       if (!data.meals) return;
       let meal = data.meals[0];
+      console.log(meal);
       let cardColumn = document.createElement("div");
       cardColumn.className = "col";
       cardColumn.id = "card-" + meal.idMeal;
 
-      cardColumn.innerHTML = `
-        <div class="meal-card">
-          <div class="meal-img-box">
-            <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-            <span class="fav-icon active" id="fav-btn-${meal.idMeal}">
-              <i class="fa-solid fa-heart"></i>
-            </span>
-          </div>
-          <div class="meal-info">
-            <h5>${meal.strMeal}</h5>
-            <p>${meal.strArea} • ${meal.strCategory}</p>
-          </div>
-        </div>
-      `;
-
-      results.appendChild(cardColumn);
+      displayMeals();
 
       let favBtn = document.getElementById(`fav-btn-${meal.idMeal}`);
 

@@ -2,7 +2,7 @@
   position: relative;
   height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-    url("../image/background.png") center / cover no-repeat;
+    url("/img/background.png") center / cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,6 +13,7 @@
     opacity: 0;
     transform: translateY(25px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -59,12 +60,15 @@
   color: #fff;
   cursor: pointer;
 }
+
 .signup-card button:hover {
   opacity: 100%;
 }
+
 .signup-card p {
   margin-top: 15px;
 }
+
 .signup-card p a {
   color: var(--light-gray);
   text-decoration: none;
