@@ -4,14 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Yummy</title>
+    <link rel="icon" href="/img/logo.png" />
+    <title>Yummy-Contact Us </title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link href="/client-side-project/mycss/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/client-side-project/mycss/style.css">
-    <link rel="stylesheet" href="/contact.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/contact.css">
+
 </head>
+
 
 <body>
 
@@ -21,24 +25,54 @@
 
 
             <div class="nav-logo">
-                <img src="/client-side-project/image/logo.png" alt="Logo" style="width: 45px; height: auto;">
+                <img src="/img/logo.png" alt="Logo" style="width: 45px; height: auto;">
                 <h3 style="font-size: 20px;" class="brand-logo m-0">Yummy</h3>
             </div>
 
 
-            <div class="nav-menu-center">
-                <ul class="d-flex list-unstyled m-0">
-                    <li>Search</li>
-                    <li>Categories</li>
-                    <li>Area</li>
-                    <li>Ingredients</li>
-                    <li>
-                        <a href="contact.html" style="text-decoration: none; color: inherit;">
-                            Contact Us
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <nav id="topNav">
+                <div class="container d-flex align-items-center justify-content-between">
+
+
+                    <div class="nav-logo">
+                        <img src="/img/logo.png" alt="Logo" style="width: 45px; height: auto;">
+                        <h3 style="font-size: 20px;" class="brand-logo m-0">Yummy</h3>
+                    </div>
+
+
+                    <div class="nav-menu-center">
+                        <ul class="d-flex list-unstyled m-0">
+                            <li> <a href="/pages/search.html" style="text-decoration: none; color: inherit;">
+                                    Search
+                                </a></li>
+                            <li> <a href="/pages/categories.html" style="text-decoration: none; color: inherit;">
+                                    Categories
+                                </a></li>
+                            <li> <a href="/pages/area.html" style="text-decoration: none; color: inherit;">
+                                    Area
+                                </a></li>
+                            <li> <a href="/pages/ingredient.html" style="text-decoration: none; color: inherit;">
+                                    Ingredients </a></li>
+                            <li>
+                                <a href="Contact.html" style="text-decoration: none; color: inherit;">
+                                    Contact Us
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="nav-toggle">
+                        <i class="fa-solid fa-bars" id="toggleBtn"></i>
+                    </div>
+                    <!-- <div class="favourite">
+                <a href="#">❤</a>
+            </div> -->
+                    <!-- <button class="btn-login ms-3">Login</button> -->
+                </div>
+
+
+            </nav>
 
 
             <div class="nav-toggle">
@@ -146,7 +180,7 @@
         </div>
     </footer>
 
-    <script src="contact.js"></script>
+    <script src="/js/contact.js"></script>
 </body>
 
 </html>

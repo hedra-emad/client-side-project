@@ -1,61 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SignUP</title>
-    <!-- <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/common.css" />
-    <link rel="stylesheet" href="../css/registration.css" />
-  </head>
-  <body>
-    <section class="hero">
-      <div class="overlay" aria-hidden="true"></div>
-      <div class="signup-card" role="main" aria-labelledby="signupTitle">
-        <form id="signupForm">
-          <h1 class="brand-logo">Yummy<span>!</span></h1>
-          <input
-            type="text"
-            placeholder="Enter Username"
-            aria-label="text"
-            required
-            name="username"
-          />
-          <input
-            type="email"
-            placeholder="Enter Your Email"
-            aria-label="email"
-            required
-            name="email"
-          />
-          <input
-            type="text"
-            placeholder="Enter Your Number"
-            aria-label="text"
-            minlength="11"
-            maxlength="11"
-            required
-            name="phone"
-          />
-          <input
-            type="password"
-            placeholder="Enter Your Password"
-            aria-label="Password"
-            minlength="8"
-            required
-            name="password"
-          />
-          <p>
-            Already have an account?
-            <a href="login.html" class="login">Login</a>
-          </p>
 
-          <p id="error" class="alert alert-danger d-none"></p>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-    </section>
-    <script src="../js/registration.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/img/logo.png" />
+
+  <title>Yummy-Sign Up</title> <!-- <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/common.css" />
+  <link rel="stylesheet" href="../css/registration.css" />
+</head>
+
+<body>
+  <section class="hero">
+    <div class="overlay" aria-hidden="true"></div>
+    <div class="signup-card" role="main" aria-labelledby="signupTitle">
+      <form id="signupForm">
+        <h1 class="brand-logo">Yummy<span>!</span></h1>
+        <input type="text" placeholder="Enter Username" aria-label="text" required name="username" />
+        <input type="email" placeholder="Enter Your Email" aria-label="email" required name="email" />
+        <input type="text" placeholder="Enter Your Number" aria-label="text" minlength="11" maxlength="11" required
+          name="phone" />
+        <input type="password" placeholder="Enter Your Password" aria-label="Password" minlength="8" required
+          name="password" />
+        <p>
+          Already have an account?
+          <a href="login.html" class="login">Login</a>
+        </p>
+
+        <p id="error" class="alert alert-danger d-none"></p>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </section>
+  <script src="js/registration.js"></script>
+</body>
+
 </html>
