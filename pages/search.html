@@ -1,49 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Yummy</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="img/logo.png" />
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/all.min.css" />
-    <link rel="stylesheet" href="../css/common.css" />
-    <!-- <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet" /> -->
-    <link rel="stylesheet" href="../css/search.css" />
-    <link rel="stylesheet" href="../css/nav.css" />
-  </head>
 
-  <body>
-    <!--search-->
-    <div class="container-fluid px-5" id="cardsSection">
-      <div class="row g-1 mb-4">
-        <div class="col-md-6">
-          <input
-            class="form-control"
-            id="searchByNameInput"
-            placeholder="Search By Name"
-          />
-        </div>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/img/logo.png" />
+  <title>Yummy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/common.css" />
+  <link rel="stylesheet" href="../css/search.css" />
+  <link rel="stylesheet" href="../css/nav.css" />
+</head>
+
+<body>
+  <!--search-->
+  <div class="container-fluid px-5" id="cardsSection">
+    <div class="row g-1 mb-4">
+      <div class="col-md-6">
+        <input class="form-control" id="searchByNameInput" placeholder="Search By Name" />
       </div>
-
-      <div
-        id="mealsResult"
-        class="row row-cols-1 row-cols-md-2 row-cols-lg-4 gx-4 gy-2"
-      ></div>
     </div>
 
-    <!-- Section  Meal Detasils -->
-    <div
-      class="container w-75 my-1 py-2 mt-5 position-relative"
-      id="mealSection"
-      style="display: none"
-    >
-      <div id="mealDetails" class="row"></div>
-    </div>
+    <div id="mealsResult" class="row row-cols-1 row-cols-md-2 row-cols-lg-4 gx-4 gy-2"></div>
+  </div>
 
-    <!--script-->
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="/utils.js"></script>
-    <script type="module" src="../js/meal.js"></script>
-    <script type="module" src="../js/main.js"></script>
-  </body>
+  <!--script-->
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="/utils.js"></script>
+  <script type="module" src="../js/main.js"></script>
+</body>
+
 </html>

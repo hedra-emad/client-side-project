@@ -2,10 +2,11 @@
 
 // import createMeal from "../utils.js";
 
-const mealsResult = document.getElementById("mealsResult");
+import { displayMeals } from "../utils.js";
+
 let searchByNameInput = document.getElementById("searchByNameInput");
 
-var meals = [];
+let meals = [];
 
 fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=")
   .then((response) => response.json())
@@ -19,19 +20,29 @@ fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=")
   });
 
 function display() {
-  let inp = searchByNameInput.value.toLowerCase();
-  let collect = "";
-  for (let meal of meals) {
-    if (inp) {
-      if (meal.strMeal.toLowerCase().includes(inp)) {
-        collect += createMeal(meal, true);
-      }
-    } else collect += createMeal(meal);
-  }
-  mealsResult.innerHTML = collect;
-  MankeFavorite();
+  const inp = searchByNameInput.value.toLowerCase();
+
+  const filteredMeals = inp
+    ? meals.filter((meal) => meal.strMeal.toLowerCase().includes(inp))
+    : meals;
+  displayMeals(filteredMeals);
 }
 
+// function display() {
+//   let inp = searchByNameInput.value.toLowerCase();
+//   let collect = "";
+//   for (let meal of meals) {
+//     if (inp) {
+//       if (meal.strMeal.toLowerCase().includes(inp)) {
+//         collect += displayMeals(meal, true);
+//       }
+//     } else collect += displayMeals(meal);
+//   }
+//   mealsResult.innerHTML = collect;
+//   MankeFavorite();
+// }
+
+//login Alert
 function showLoginAlert() {
   const alertBox = document.getElementById("login-alert");
   if (alertBox) {
@@ -73,31 +84,36 @@ function MankeFavorite() {
   }
 }
 
-export function createMeal(meal) {
-  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-  const activeClass = favorites.includes(meal.idMeal) ? "active" : "";
+// displayMeals(meal)
 
-  return `
-  <a href="meal.html?id=${meal.idMeal}">
-    <div class="col">
-      <div class="meal-card">
-        <div class="meal-img-box">
-          <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-        </div>
+// function createMeal(meal) {
+//   const isUserLoggedIn = localStorage.getItem("loggedUser");
+//   var activeClass = "";
+//   if (isUserLoggedIn) {
+//     const isFav = localStorage.getItem("fav" + meal.idMeal);
+//     activeClass = isFav ? "active" : "";
+//   }
+//   return `<a href="meal.html?id=${meal.idMeal}">
+//   <div class="col" >
+//   <div class="meal-card" >
+//     <div class="meal-img-box">
+//       <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
 
-        <div class="meal-info">
-          <div>
-            <h5>${meal.strMeal}</h5>
-            <p>${meal.strArea} • ${meal.strCategory}</p>
-          </div>
-          <div>
-            <span class="fav-icon ${activeClass}" id="fav-${meal.idMeal}">
-              <i class="fa-solid fa-heart"></i>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </a>
-  `;
-}
+//     </div>
+
+//     <div class="meal-info">
+//      <div>
+//       <h5>${meal.strMeal}</h5>
+//       <p>${meal.strArea} • ${meal.strCategory}</p>
+//      </div>
+//        <div>
+//        <span class="fav-icon ${activeClass}" id="fav-${meal.idMeal}">
+//       <i class="fa-solid fa-heart"></i>
+//       </span>
+//        </div>
+//     </div>
+//   </div>
+// </div>
+//   </a>
+//   `;
+// }
