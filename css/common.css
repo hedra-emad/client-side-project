@@ -1,9 +1,10 @@
 :root {
   --yellow: #f9c004;
   --black: #0b0b0b;
-  --red: rgb(224, 6, 6);
+  --red: #f03a17;
   --dark-gray: #121212;
   --light-gray: #a19a9a;
+  --white: #f4eded;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -18,7 +19,6 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-
 }
 
 *::selection {
@@ -35,31 +35,31 @@ i {
 }
 
 #login-alert {
-    display: none;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #dc3545;
-    color: white;
-    padding: 15px 20px;
-    border-radius: 8px;
-    z-index: 9999;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    font-weight: bold;
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #dc3545;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  z-index: 9999;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
 }
 
 .login-alert-botton {
-    color: white;
-    border: 1px solid white;
-    padding: 2px 8px;
-    border-radius: 4px;
-    margin-left: 10px;
-    text-decoration: none;
-    font-size: 13px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+  color: white;
+  border: 1px solid white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-left: 10px;
+  text-decoration: none;
+  font-size: 13px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .login-alert-botton:hover {
-    background-color: white;
-    color: #dc3545;
+  background-color: white;
+  color: #dc3545;
 }

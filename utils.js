@@ -4,7 +4,7 @@ let mealDetails = document.getElementById("mealDetails");
 
 export default async function getMealDetails(mealID) {
   let meal = await fetch(
-    `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`,
+    `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`
   );
   meal = await meal.json();
   const mealObj = meal.meals[0];
@@ -24,7 +24,7 @@ export function displayMealDetails(mealObj) {
   let html = `
   <div class="col-md-5 myM text-center">
   <img class="img-fluid shadow-lg" src="${mealObj.strMealThumb}" alt="${mealObj.strMeal}">
-  <h1 class="text-center mt-3 text-warning">${mealObj.strMeal}</h1>
+  <h2 class="text-center mt-3 text-warning">${mealObj.strMeal}</h2>
 </div>
 <div class="col-md-7 myM text-left">
   <h2>Instructions</h2>
@@ -46,41 +46,41 @@ export function displayMealDetails(mealObj) {
 }
 
 export function showLoginAlert() {
-    let alertBox = document.getElementById("login-alert");
+  let alertBox = document.getElementById("login-alert");
 
-    if (!alertBox) {
-        alertBox = document.createElement("div");
-        alertBox.id = "login-alert";
-        document.body.appendChild(alertBox);
-    }
+  if (!alertBox) {
+    alertBox = document.createElement("div");
+    alertBox.id = "login-alert";
+    document.body.appendChild(alertBox);
+  }
 
-    alertBox.innerHTML = `
+  alertBox.innerHTML = `
         <span>You must log in first!</span>
         <a href="login.html" class="login-alert-botton">Login</a>
     `;
 
-    alertBox.style.display = "block";
-    setTimeout(() => {
-        alertBox.style.display = "none";
-    }, 3000); 
+  alertBox.style.display = "block";
+  setTimeout(() => {
+    alertBox.style.display = "none";
+  }, 3000);
 }
 
 export function displayMeals(meals) {
-    let str = "";
-    const isUserLoggedIn = localStorage.getItem("loggedUser");
-    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  let str = "";
+  const isUserLoggedIn = localStorage.getItem("loggedUser");
+  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-    meals.forEach((meal) => {
-        const isFav = isUserLoggedIn && favorites.includes(meal.idMeal);
-        const activeClass = isFav ? "active" : "";
+  meals.forEach((meal) => {
+    const isFav = isUserLoggedIn && favorites.includes(meal.idMeal);
+    const activeClass = isFav ? "active" : "";
 
-        str += `
+    str += `
         <div class="col" >
-            <div class="meal-card rounded-3" >
-                <div class="meal-img-box">
+            <div class="card-box position-relative rounded-3" >
+                <div class="card-img">
                     <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
                 </div>
-                <div class="meal-info">
+                <div class="card-info">
                     <div>
                         <a href="javascript:void(0)" onclick="handleMealClick(event, '${meal.idMeal}')">
                             <h5>${meal.strMeal}</h5>
@@ -97,40 +97,39 @@ export function displayMeals(meals) {
             </div>
         </div>
         `;
-    });
+  });
 
   mealsResult.innerHTML = str;
 }
 
-window.handleFavoriteClick = function(event, mealId) {
-    event.preventDefault();
-    event.stopPropagation();
-    const isUserLoggedIn = localStorage.getItem("loggedUser");
-    if (!isUserLoggedIn) {
-        showLoginAlert(); 
-        return;
-    }
-    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-    const favBtn = document.getElementById("fav-" + mealId);
-    if (favorites.includes(mealId)) {
-        favorites = favorites.filter((id) => id !== mealId);
-        if (favBtn) favBtn.classList.remove("active");
-
-    } else {
-        favorites.push(mealId);
-        if (favBtn) favBtn.classList.add("active");
-    }
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+window.handleFavoriteClick = function (event, mealId) {
+  event.preventDefault();
+  event.stopPropagation();
+  const isUserLoggedIn = localStorage.getItem("loggedUser");
+  if (!isUserLoggedIn) {
+    showLoginAlert();
+    return;
+  }
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  const favBtn = document.getElementById("fav-" + mealId);
+  if (favorites.includes(mealId)) {
+    favorites = favorites.filter((id) => id !== mealId);
+    if (favBtn) favBtn.classList.remove("active");
+  } else {
+    favorites.push(mealId);
+    if (favBtn) favBtn.classList.add("active");
+  }
+  localStorage.setItem("favorites", JSON.stringify(favorites));
 };
 
-window.handleMealClick = function(event, mealId) {
-    event.preventDefault();
-    const isUserLoggedIn = localStorage.getItem("loggedUser");
-    if (isUserLoggedIn) {
-        window.location.href = `meal.html?id=${mealId}`;
-    } else {
-        showLoginAlert();
-    }
+window.handleMealClick = function (event, mealId) {
+  event.preventDefault();
+  const isUserLoggedIn = localStorage.getItem("loggedUser");
+  if (isUserLoggedIn) {
+    window.location.href = `meal.html?id=${mealId}`;
+  } else {
+    showLoginAlert();
+  }
 };
 
 //--------------------------------------------------------------------------
@@ -144,8 +143,8 @@ function displayData(meals, flags) {
         meal.strIngredient ? "i" : meal.strArea ? "a" : "c"
       }&recipe=${meal.strIngredient || meal.strArea || meal.strCategory}">
         <div class="col">
-          <div class="ingredient-card rounded-3">
-            <div class="ingredient-img-box">
+          <div class="card-box rounded-3">
+            <div class="card-img">
               <img 
                 src="${
                   (meal.strIngredient &&
@@ -156,14 +155,14 @@ function displayData(meals, flags) {
                 alt="${meal.strIngredient || meal.strArea || ""}"
               >
             </div>
-            <div class="ingredient-info">
+            <div class="card-info">
               <h5>${meal.strIngredient || meal.strArea || meal.strCategory}</h5>
               <p>${
                 meal.strDescription
                   ? meal.strDescription.slice(0, 100)
                   : meal.strCategoryDescription
-                    ? meal.strCategoryDescription.slice(0, 100)
-                    : ""
+                  ? meal.strCategoryDescription.slice(0, 100)
+                  : ""
               }</p> 
             </div>
           </div>
@@ -178,19 +177,19 @@ function displayData(meals, flags) {
 export async function getData(data, flags = []) {
   if (data[2] === "ingredient.html") {
     const res = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/list.php?i=list",
+      "https://www.themealdb.com/api/json/v1/1/list.php?i=list"
     );
     const resData = await res.json();
     displayData(resData.meals.slice(0, 20));
   } else if (data[2] === "area.html") {
     const res = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/list.php?a=list",
+      "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
     );
     const resData = await res.json();
     displayData(resData.meals, flags);
   } else if (data[2] === "categories.html") {
     const res = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/categories.php",
+      "https://www.themealdb.com/api/json/v1/1/categories.php"
     );
     const resData = await res.json();
     displayData(resData.categories);
