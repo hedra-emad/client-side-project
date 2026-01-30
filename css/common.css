@@ -27,3 +27,33 @@ a {
 i {
   cursor: pointer;
 }
+
+#login-alert {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #dc3545;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+.login-alert-botton {
+    color: white;
+    border: 1px solid white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 13px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login-alert-botton:hover {
+    background-color: white;
+    color: #dc3545;
+}

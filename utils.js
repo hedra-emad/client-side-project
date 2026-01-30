@@ -45,36 +45,93 @@ export function displayMealDetails(mealObj) {
   mealDetails.innerHTML = html;
 }
 
-export function displayMeals(meals) {
-  let str = "";
-  meals.forEach((meal) => {
-    str += `
-    
-  <div class="col" >
-  <div class="meal-card rounded-3" >
-    <div class="meal-img-box">
-      <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-    </div>
-    <div class="meal-info">
-     <div>
-      <a href="meal.html?id=${meal.idMeal}">
-      <h5>${meal.strMeal}</h5>
-       </a>
-     </div>
-       <div>
-       <span class="fav-icon">
-      <i class="fa-solid fa-heart"></i>
-      </span>
-       </div>
-    </div>
-  </div>
-</div>
- 
+export function showLoginAlert() {
+    let alertBox = document.getElementById("login-alert");
+
+    if (!alertBox) {
+        alertBox = document.createElement("div");
+        alertBox.id = "login-alert";
+        document.body.appendChild(alertBox);
+    }
+
+    alertBox.innerHTML = `
+        <span>You must log in first!</span>
+        <a href="login.html" class="login-alert-botton">Login</a>
     `;
-  });
+
+    alertBox.style.display = "block";
+    setTimeout(() => {
+        alertBox.style.display = "none";
+    }, 3000); 
+}
+
+export function displayMeals(meals) {
+    let str = "";
+    const isUserLoggedIn = localStorage.getItem("loggedUser");
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    meals.forEach((meal) => {
+        const isFav = isUserLoggedIn && favorites.includes(meal.idMeal);
+        const activeClass = isFav ? "active" : "";
+
+        str += `
+        <div class="col" >
+            <div class="meal-card rounded-3" >
+                <div class="meal-img-box">
+                    <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+                </div>
+                <div class="meal-info">
+                    <div>
+                        <a href="javascript:void(0)" onclick="handleMealClick(event, '${meal.idMeal}')">
+                            <h5>${meal.strMeal}</h5>
+                        </a>
+                    </div>
+                    <div>
+                        <span class="fav-icon ${activeClass}" 
+                              onclick="handleFavoriteClick(event, '${meal.idMeal}')" 
+                              id="fav-${meal.idMeal}">
+                            <i class="fa-solid fa-heart"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+    });
 
   mealsResult.innerHTML = str;
 }
+
+window.handleFavoriteClick = function(event, mealId) {
+    event.preventDefault();
+    event.stopPropagation();
+    const isUserLoggedIn = localStorage.getItem("loggedUser");
+    if (!isUserLoggedIn) {
+        showLoginAlert(); 
+        return;
+    }
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const favBtn = document.getElementById("fav-" + mealId);
+    if (favorites.includes(mealId)) {
+        favorites = favorites.filter((id) => id !== mealId);
+        if (favBtn) favBtn.classList.remove("active");
+
+    } else {
+        favorites.push(mealId);
+        if (favBtn) favBtn.classList.add("active");
+    }
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+};
+
+window.handleMealClick = function(event, mealId) {
+    event.preventDefault();
+    const isUserLoggedIn = localStorage.getItem("loggedUser");
+    if (isUserLoggedIn) {
+        window.location.href = `meal.html?id=${mealId}`;
+    } else {
+        showLoginAlert();
+    }
+};
 
 //--------------------------------------------------------------------------
 const dataResult = document.getElementById("dataResult");
