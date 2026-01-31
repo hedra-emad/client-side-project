@@ -31,7 +31,7 @@ form.addEventListener("submit", async function (e) {
 
   try {
     const checkResponse = await fetch(
-      `http://localhost:3000/users?email=${email}`
+      `http://localhost:3000/users?email=${email}`,
     );
     const existingUsers = await checkResponse.json();
 
@@ -56,7 +56,7 @@ form.addEventListener("submit", async function (e) {
       JSON.stringify({
         username: newUser.username,
         loginAt: new Date().toISOString(),
-      })
+      }),
     );
     console.log("Redirecting to index...");
     window.location.href = "/index.html";

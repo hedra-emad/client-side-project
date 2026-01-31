@@ -16,7 +16,7 @@ const mainContent = document.getElementById("mainContent");
 async function getCategories() {
   try {
     let response = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/categories.php"
+      "https://www.themealdb.com/api/json/v1/1/categories.php",
     );
     let data = await response.json();
 
@@ -69,18 +69,47 @@ function getRandomMeal() {
                 </div>`;
     } else {
       console.error("Error fetching meal:", xhr.status);
-      document.getElementById(
-        "randomMeal"
-      ).innerHTML = `<p class="text-danger">Failed to fetch meal. Try again!</p>`;
+      document.getElementById("randomMeal").innerHTML =
+        `<p class="text-danger">Failed to fetch meal. Try again!</p>`;
     }
   };
 
   xhr.onerror = function () {
     console.error("Request failed");
-    document.getElementById(
-      "randomMeal"
-    ).innerHTML = `<p class="text-danger">Request failed. Try again!</p>`;
+    document.getElementById("randomMeal").innerHTML =
+      `<p class="text-danger">Request failed. Try again!</p>`;
   };
 
   xhr.send();
 }
+
+const userProfile = document.getElementById("userProfile");
+const authButtons = document.getElementById("authButtons");
+const userNameDisplay = document.getElementById("userNameDisplay");
+
+const loginBtn = document.querySelector(".btn-login");
+const registerBtn = document.getElementById("registerBtn");
+
+function updateNavbar() {
+  const loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
+
+  if (loggedUser) {
+    authButtons.style.setProperty("display", "none", "important");
+
+    userProfile.style.setProperty("display", "flex", "important");
+
+    userNameDisplay.textContent = loggedUser.username;
+  } else {
+    authButtons.style.setProperty("display", "flex", "important");
+
+    userProfile.style.setProperty("display", "none", "important");
+  }
+}
+
+updateNavbar();
+
+if (loginBtn)
+  loginBtn.onclick = () => (window.location.href = "pages/login.html");
+if (registerBtn)
+  registerBtn.onclick = () =>
+    (window.location.href = "pages/registration.html");

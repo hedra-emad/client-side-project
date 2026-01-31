@@ -16,18 +16,18 @@
   <section class="hero">
     <div class="overlay" aria-hidden="true"></div>
     <div class="auth-card login" role="main" aria-labelledby="loginTitle">
-      <form action="../index.html" id="loginForm">
+      <form id="loginForm">
         <h1 id="loginTitle">SIGN IN</h1>
-        <input id="username" type="text" placeholder="Enter Your Username" aria-label="Email" required />
-        <input id="password" type="password" placeholder="Enter Your Password" aria-label="Password" required />
-        <button type="button" onclick="login()">Login</button>
+        <input id="username" type="text" placeholder="Enter Your Username" required />
+        <input id="password" type="password" placeholder="Enter Your Password" required />
+        <button type="submit">Login</button>
         <p id="error" class="alert alert-danger d-none"></p>
         <p><a href="#">Forget Password ?</a></p>
-        <p><a href="../pages/registration.html">or New Account !</a></p>
+        <p><a href="registration.html">or New Account !</a></p>
       </form>
     </div>
   </section>
-  <script src="/js/login.js"></script>
+  <script src="../js/login.js"></script>
 </body>
 
 </html>

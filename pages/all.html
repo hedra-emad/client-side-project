@@ -1,50 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/img/logo.png" />
-    <title>Yummy</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/common.css" />
-    <link rel="stylesheet" href="/css/pages.css" />
-    <!-- <link rel="stylesheet" href="../css/all.css" /> -->
-    <!-- <link rel="stylesheet" href="../css/nav.css" /> -->
-  </head>
 
-  <body>
-    <!--search-->
-    <div class="container my-5 pt-5" id="cardsSection">
-      <div class="row g-1 mb-4">
-        <div class="col-md-6">
-          <input
-            class="form-control"
-            id="searchByNameInput"
-            placeholder="Search By Name"
-          />
-        </div>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/img/logo.png" />
+  <title>Yummy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/common.css" />
+  <link rel="stylesheet" href="/css/pages.css" />
+  <!-- <link rel="stylesheet" href="/css/home.css" /> -->
+  <link rel="stylesheet" href="/css/nav.css" />
+  <link rel="icon" href="/img/logo.png" />
+  <!-- <link rel="stylesheet" href="../css/all.css" /> -->
+  <!-- <link rel="stylesheet" href="../css/nav.css" /> -->
+</head>
+
+<body>
+
+
+  <nav id="topNav">
+    <div class="container d-flex align-items-center justify-content-between">
+      <div class="nav-logo">
+        <img src="/img/logo.png" alt="Logo" style="width: 45px; height: auto" />
+        <h3 style="font-size: 20px" class="brand-logo m-0">Yummy</h3>
       </div>
 
-      <h2 class="text-warning mb-4">Our Meals</h2>
+      <div class="nav-menu-center">
+        <ul class="d-flex list-unstyled m-0">
+          <li>
+            <a href="/index.html" style="text-decoration: none; color: inherit">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="/pages/all.html" style="text-decoration: none; color: inherit">
+              All Meals
+            </a>
+          </li>
+          <li>
+            <a href="/pages/categories.html" style="text-decoration: none; color: inherit">
+              Categories
+            </a>
+          </li>
+          <li>
+            <a href="/pages/area.html" style="text-decoration: none; color: inherit">
+              Area
+            </a>
+          </li>
+          <li>
+            <a href="/pages/ingredient.html" style="text-decoration: none; color: inherit">
+              Ingredients
+            </a>
+          </li>
+          <li>
+            <a href="/pages/Contact.html" style="text-decoration: none; color: inherit">
+              Contact Us
+            </a>
+          </li>
+        </ul>
+      </div>
 
-      <div
-        id="mealsResult"
-        class="row row-cols-1 row-cols-md-2 row-cols-lg-4 gx-4 gy-2"
-      ></div>
+
+      <div class="nav-actions">
+        <div class="search-wrapper">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" id="searchByNameInput" placeholder="Search for meal" oninput="display()">
+        </div>
+        <!-- <div class="favourite">
+          <a href="#">❤</a>
+        </div> -->
+        <i class="fa-solid fa-bars menu-toggle" id="toggleBtn"></i>
+      </div>
     </div>
+  </nav>
+  <!-- search -->
+  <!-- <div class="container my-5 pt-5" id="cardsSection">
+    <div class="row g-1 mb-4">
+      <div class="col-md-6">
+        <input class="form-control" id="searchByNameInput" placeholder="Search By Name" />
+      </div>
+    </div> -->
 
-    <!--script-->
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="/utils.js"></script>
-    <script type="module" src="/js/nav.js"></script>
 
-    <script type="module" src="../js/main.js"></script>
-  </body>
+
+
+  <h2 class="text-warning mb-4">Our Meals</h2>
+
+  <div id="mealsResult" class="row row-cols-1 row-cols-md-2 row-cols-lg-4 gx-4 gy-2"></div>
+  </div>
+
+  <!--script-->
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="/utils.js"></script>
+  <script type="module" src="/js/nav.js"></script>
+  <script type="module" src="/js/index.js"></script>
+
+
+  <script type="module" src="../js/main.js"></script>
+
+
+</body>
+
 </html>

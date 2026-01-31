@@ -41,7 +41,7 @@ async function login() {
     const user = users.find(
       (u) =>
         (u.username === usernameOrEmail || u.email === usernameOrEmail) &&
-        u.password === password
+        u.password === password,
     );
 
     if (user) {
@@ -50,7 +50,7 @@ async function login() {
         JSON.stringify({
           username: user.username,
           loginAt: new Date().toISOString(),
-        })
+        }),
       );
 
       window.location.href = "../index.html";
@@ -71,3 +71,12 @@ document.getElementById("loginForm").addEventListener("submit", (e) => {
   e.preventDefault();
   login();
 });
+
+sessionStorage.setItem("userAccount", "true");
+
+if (user) {
+  sessionStorage.setItem("loggedUser", JSON.stringify(user));
+
+  alert("Welcome " + user.username);
+  window.location.href = "../index.html";
+}

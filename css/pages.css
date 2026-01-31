@@ -138,3 +138,59 @@
   border-color: var(--yellow);
   box-shadow: 0 0 0 3px rgba(249, 192, 4, 0.15);
 } */
+
+
+
+.nav-link-custom {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.nav-link-custom:hover,
+.nav-link-custom.active {
+  color: #ffc107;
+  /* اللون الأصفر */
+}
+
+.search-wrapper {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  padding: 5px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.search-wrapper input {
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  outline: none;
+  width: 150px;
+  
+  font-size: 14px;
+}
+
+.search-wrapper input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.search-icon {
+  color: #ffc107;
+}
+
+
+.menu-toggle {
+  font-size: 22px;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  .search-wrapper input {
+    width: 100px;
+    
+  }
+}
