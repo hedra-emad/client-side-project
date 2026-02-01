@@ -1,17 +1,35 @@
 import { displayMeals } from "../utils.js";
 
-function loadFavorites() {
-  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+async function loadFavorites() {
+  const loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
+
+  if (!loggedUser || !loggedUser.favorites) {
+    displayMeals([]);
+    return;
+  }
+
+  const favorites = loggedUser.favorites;
   let favoriteMealsData = [];
 
-  favorites.forEach((mealId) => {
-    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
-      .then((response) => response.json())
-      .then((data) => {
+  for (let mealId of favorites) {
+    try {
+      const res = await fetch(
+        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`,
+      );
+
+      if (!res.ok) continue;
+
+      const data = await res.json();
+
+      if (data.meals) {
         favoriteMealsData.push(data.meals[0]);
-        displayMeals(favoriteMealsData);
-      });
-  });
+      }
+    } catch (err) {
+      console.log("Fetch Error:", err);
+    }
+  }
+
+  displayMeals(favoriteMealsData);
 }
 
 loadFavorites();

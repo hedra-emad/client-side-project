@@ -4,7 +4,7 @@ let mealDetails = document.getElementById("mealDetails");
 
 export default async function getMealDetails(mealID) {
   let meal = await fetch(
-    `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`
+    `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`,
   );
   meal = await meal.json();
   const mealObj = meal.meals[0];
@@ -68,7 +68,8 @@ export function showLoginAlert() {
 export function displayMeals(meals) {
   let str = "";
   const loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
-  const favorites = (loggedUser && loggedUser.favorites) ? loggedUser.favorites : [];
+  const favorites =
+    loggedUser && loggedUser.favorites ? loggedUser.favorites : [];
 
   meals.forEach((meal) => {
     const activeClass = favorites.includes(meal.idMeal) ? "active" : "";
@@ -87,7 +88,7 @@ export function displayMeals(meals) {
                     </div>
                     <div>
                         <span class="fav-icon ${activeClass}" 
-                              onclick="handleFavoriteClick(event, '${meal.idMeal}')" 
+                              onclick="handleFavoriteClick('${meal.idMeal}')" 
                               id="fav-${meal.idMeal}">
                             <i class="fa-solid fa-heart"></i>
                         </span>
@@ -103,27 +104,47 @@ export function displayMeals(meals) {
 
 window.handleFavoriteClick = async function (mealId) {
   const loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
+
   if (!loggedUser) {
     showLoginAlert();
     return;
   }
+
   let favorites = loggedUser.favorites || [];
 
   if (favorites.includes(mealId)) {
-    favorites = favorites.filter(id => id !== mealId); 
+    favorites = favorites.filter((id) => id !== mealId);
   } else {
     favorites.push(mealId);
-  }loggedUser.favorites = favorites;
+  }
+
+  loggedUser.favorites = favorites;
+
+  // Update session
   sessionStorage.setItem("loggedUser", JSON.stringify(loggedUser));
+
+  // Update UI
   const favBtn = document.getElementById("fav-" + mealId);
   if (favBtn) favBtn.classList.toggle("active");
-try {
-    await fetch(`http://localhost:5501/users/${loggedUser.id}`, {
+
+  // Update db.json
+  try {
+    const res = await fetch(`http://localhost:5501/users/${loggedUser.id}`, {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ favorites: favorites }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        favorites: favorites,
+      }),
     });
-  } catch (error) {console.error("Error updating favorites", error);}
+
+    if (!res.ok) {
+      throw new Error("Failed to update DB");
+    }
+  } catch (err) {
+    console.log("DB Update Error:", err);
+  }
 };
 
 window.handleMealClick = function (event, mealId) {
@@ -165,8 +186,8 @@ function displayData(meals, flags) {
                 meal.strDescription
                   ? meal.strDescription.slice(0, 100)
                   : meal.strCategoryDescription
-                  ? meal.strCategoryDescription.slice(0, 100)
-                  : ""
+                    ? meal.strCategoryDescription.slice(0, 100)
+                    : ""
               }</p> 
             </div>
           </div>
@@ -181,19 +202,19 @@ function displayData(meals, flags) {
 export async function getData(data, flags = []) {
   if (data[2] === "ingredient.html") {
     const res = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/list.php?i=list"
+      "https://www.themealdb.com/api/json/v1/1/list.php?i=list",
     );
     const resData = await res.json();
     displayData(resData.meals.slice(0, 20));
   } else if (data[2] === "area.html") {
     const res = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
+      "https://www.themealdb.com/api/json/v1/1/list.php?a=list",
     );
     const resData = await res.json();
     displayData(resData.meals, flags);
   } else if (data[2] === "categories.html") {
     const res = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/categories.php"
+      "https://www.themealdb.com/api/json/v1/1/categories.php",
     );
     const resData = await res.json();
     displayData(resData.categories);
