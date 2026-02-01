@@ -1,0 +1,52 @@
+{
+    "users": [
+        {
+            "id": "80a9",
+            "username": "Hedra",
+            "email": "emadhedra4@gmail.com",
+            "phone": "01212171762",
+            "password": "12345678",
+            "favorites": []
+        },
+        {
+            "id": "ba4d",
+            "username": "hedra",
+            "email": "emadhedra4@gmail.com",
+            "phone": "01212171762",
+            "password": "12345678",
+            "favorites": []
+        },
+        {
+            "id": "caf4",
+            "username": "Esraa",
+            "email": "esraa@test.com",
+            "phone": "01000000000",
+            "password": "12345678",
+            "favorites": []
+        },
+        {
+            "id": "ee13",
+            "username": "Aliaa",
+            "email": "aliaa@test.com",
+            "phone": "01000000001",
+            "password": "12345678",
+            "favorites": []
+        },
+        {
+            "id": "74ed",
+            "username": "Nada",
+            "email": "nada@test.com",
+            "phone": "01000000002",
+            "password": "12345678",
+            "favorites": []
+        },
+        {
+            "id": "5d2e",
+            "username": "Ali",
+            "email": "ali@gmail.com",
+            "phone": "01212171762",
+            "password": "123456789",
+            "favorites": []
+        }
+    ]
+}
