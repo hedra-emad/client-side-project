@@ -48,7 +48,9 @@ async function login() {
       sessionStorage.setItem(
         "loggedUser",
         JSON.stringify({
+          id: user.id || user._id,
           username: user.username,
+          favorites: user.favorites,
           loginAt: new Date().toISOString(),
         }),
       );

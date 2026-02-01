@@ -38,7 +38,7 @@ form.addEventListener("submit", async function (e) {
 
   try {
     const checkResponse = await fetch(
-      `http://localhost:5501/users?email=${email}`,
+      `http://localhost:3000/users?email=${email}`,
     );
     const existingUsers = await checkResponse.json();
 

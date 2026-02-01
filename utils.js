@@ -67,12 +67,11 @@ export function showLoginAlert() {
 
 export function displayMeals(meals) {
   let str = "";
-  const isUserLoggedIn = sessionStorage.getItem("loggedUser");
-  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  const loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
+  const favorites = (loggedUser && loggedUser.favorites) ? loggedUser.favorites : [];
 
   meals.forEach((meal) => {
-    const isFav = isUserLoggedIn && favorites.includes(meal.idMeal);
-    const activeClass = isFav ? "active" : "";
+    const activeClass = favorites.includes(meal.idMeal) ? "active" : "";
 
     str += `
         <div class="col" >
@@ -102,26 +101,33 @@ export function displayMeals(meals) {
   mealsResult.innerHTML = str;
 }
 
-window.handleFavoriteClick = function (event, mealId) {
-  event.preventDefault();
-  event.stopPropagation();
-  const isUserLoggedIn = sessionStorage.getItem("loggedUser");
-  if (!isUserLoggedIn) {
+window.handleFavoriteClick = async function (event, mealId) {
+  const loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
+  if (!loggedUser) {
     showLoginAlert();
     return;
   }
-  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
-  const favBtn = document.getElementById("fav-" + mealId);
+  let favorites = loggedUser.favorites || [];
+  
   if (favorites.includes(mealId)) {
-    favorites = favorites.filter((id) => id !== mealId);
-    if (favBtn) favBtn.classList.remove("active");
+    favorites = favorites.filter(id => id !== mealId);
   } else {
     favorites.push(mealId);
-    if (favBtn) favBtn.classList.add("active");
   }
-  localStorage.setItem("favorites", JSON.stringify(favorites));
+  loggedUser.favorites = favorites;
+  sessionStorage.setItem("loggedUser", JSON.stringify(loggedUser));
+  const favBtn = document.getElementById("fav-" + mealId);
+  if (favBtn) favBtn.classList.toggle("active"); 
+  try {
+    await fetch(`http://localhost:5501/users/${loggedUser.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ favorites: favorites }),
+    });
+  } catch (error) {
+    console.error("Error updating favorites", error);
+  }
 };
-
 window.handleMealClick = function (event, mealId) {
   event.preventDefault();
   const isUserLoggedIn = sessionStorage.getItem("loggedUser");
@@ -132,7 +138,7 @@ window.handleMealClick = function (event, mealId) {
   }
 };
 
-//--------------------------------------------------------------------------
+
 const dataResult = document.getElementById("dataResult");
 
 function displayData(meals, flags) {
