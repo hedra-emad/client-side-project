@@ -1,11 +1,6 @@
-
-
 import { displayMeals } from "../utils.js";
-
 let searchByNameInput = document.getElementById("searchByNameInput");
-
 let meals = [];
-
 fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=")
   .then((response) => response.json())
   .then((data) => {
@@ -19,7 +14,6 @@ fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=")
 
 function display() {
   const inp = searchByNameInput.value.toLowerCase();
-
   const filteredMeals = inp
     ? meals.filter((meal) => meal.strMeal.toLowerCase().includes(inp))
     : meals;
