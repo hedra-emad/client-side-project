@@ -1,3 +1,4 @@
+import { supabaseClient } from "./supabaseClient.js";
 import { showLoginAlert } from "../utils.js";
 document.addEventListener("DOMContentLoaded", () => {
   const listModal = document.getElementById("listModal");
@@ -85,48 +86,37 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       // 2. تحديث البيانات محلياً (Local/Session)
-      loggedUser.lists = loggedUser.lists || [];
-      loggedUser.lists.push(newList);
+      // نضمن إن الـ lists مصفوفة عشان منعملش push على null
+      const currentLists = loggedUser.lists || [];
+      const updatedLists = [...currentLists, newList];
+
+      // تحديث الـ SessionStorage فوراً لسرعة الـ UI
+      loggedUser.lists = updatedLists;
       sessionStorage.setItem("loggedUser", JSON.stringify(loggedUser));
 
-      // 3. تحديث السيرفر (JSONbin)
+      // 3. تحديث السيرفر (Supabase)
       try {
-        // جلب الداتا الحالية
-        const getRes = await fetch(
-          `https://api.jsonbin.io/v3/b/${BIN_ID}/latest`,
-          {
-            headers: { "X-Master-Key": API_KEY },
-          },
-        );
+        // طلقة واحدة مباشرة: حدّث عمود الـ lists لليوزر ده بس
+        const { error } = await supabaseClient
+          .from("users")
+          .update({ lists: updatedLists }) // بنبعت المصفوفة الجديدة كاملة
+          .eq("id", loggedUser.id);
 
-        if (!getRes.ok) throw new Error("Failed to fetch users");
+        if (error) throw error;
 
-        const data = await getRes.json();
-        let allUsers = data.record.users;
-
-        // تحديث المستخدم المحدد
-        const userIndex = allUsers.findIndex((u) => u.id === loggedUser.id);
-        if (userIndex !== -1) {
-          allUsers[userIndex].lists = loggedUser.lists;
-
-          // رفع الداتا كاملة بالهيكل الصحيح
-          await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              "X-Master-Key": API_KEY,
-            },
-            body: JSON.stringify({ users: allUsers }),
-          });
-
-          console.log("New list synced to server");
-        }
+        console.log("✅ New list synced to Supabase!");
       } catch (err) {
-        console.error("Create list sync error:", err);
+        console.error("❌ Create list sync error:", err.message);
+        // تنبيه لليوزر إن الداتا متسيفتش أونلاين بس لسه موجودة في الجلسة
+        alert(
+          "Something went wrong saving to cloud, but your list is saved locally.",
+        );
       }
 
       // 4. تحديث الـ UI وإخفاء الفورم
-      renderLists(loggedUser.lists, null);
+      if (typeof renderLists === "function") {
+        renderLists(loggedUser.lists, null);
+      }
 
       if (createListView) createListView.classList.add("hidden");
       if (listsView) listsView.classList.remove("hidden");
@@ -186,42 +176,21 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // 2. تحديث السيرفر (JSONbin Sync)
+    // 2. تحديث السيرفر (Supabase Sync)
     try {
-      // جلب النسخة الكاملة من السيرفر
-      const getResponse = await fetch(
-        `https://api.jsonbin.io/v3/b/${BIN_ID}/latest`,
-        {
-          method: "GET",
-          headers: { "X-Master-Key": API_KEY },
-        },
-      );
+      // مش محتاجين نجيب كل اليوزرز (GET) ولا نلف عليهم (findIndex)
+      // هنبعت الـ lists الجديدة اللي اتعدلت في الخطوة رقم 1 مباشرة
+      const { error } = await supabaseClient
+        .from("users")
+        .update({ lists: loggedUser.lists }) // بنحدث عمود القوائم فقط
+        .eq("id", loggedUser.id); // لليوزر ده بالظبط
 
-      if (!getResponse.ok) throw new Error("Failed to fetch users");
+      if (error) throw error;
 
-      const data = await getResponse.json();
-      let allUsers = data.record.users;
-
-      // البحث عن المستخدم وتحديث قوائمه
-      const userIndex = allUsers.findIndex((u) => u.id === loggedUser.id);
-      if (userIndex !== -1) {
-        allUsers[userIndex].lists = loggedUser.lists;
-
-        // رفع المصفوفة كاملة للهيكل { users: [...] }
-        await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Master-Key": API_KEY,
-          },
-          body: JSON.stringify({ users: allUsers }),
-        });
-
-        console.log("Meal added and synced with server");
-      }
+      console.log("✅ Meal added and synced with Supabase!");
     } catch (err) {
-      console.error("Add meal sync error:", err);
-      // ملاحظة: البيانات ستظل محفوظة في الـ SessionStorage حتى لو فشل السيرفر مؤقتاً
+      console.error("❌ Add meal sync error:", err.message);
+      // البيانات لسه موجودة في الـ SessionStorage، فالمستخدم مش هيحس بمشكلة فورية
     }
 
     alert(`Meal added to ${list.name}`);

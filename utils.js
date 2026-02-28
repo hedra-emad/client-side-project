@@ -1,4 +1,5 @@
 "use strict";
+import { supabaseClient } from "./js/supabaseClient.js";
 import { refreshNavbarFavColor } from "./js/nav.js";
 let mealDetails = document.getElementById("mealDetails");
 
@@ -121,6 +122,77 @@ export function displayMeals(meals) {
   mealsResult.innerHTML = str;
 }
 
+// window.handleFavoriteClick = async function (mealId, event) {
+//   if (event) {
+//     event.preventDefault();
+//     event.stopPropagation();
+//   }
+
+//   const loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
+
+//   if (!loggedUser) {
+//     showLoginAlert();
+//     return;
+//   }
+
+//   // 1. تحديث الـ Favorites محلياً (Local Logic)
+//   let favorites = loggedUser.favorites || [];
+//   const isAdding = !favorites.includes(mealId);
+
+//   if (isAdding) {
+//     favorites.push(mealId);
+//   } else {
+//     favorites = favorites.filter((id) => id !== mealId);
+//   }
+
+//   loggedUser.favorites = favorites;
+
+//   // تحديث الـ SessionStorage فوراً
+//   sessionStorage.setItem("loggedUser", JSON.stringify(loggedUser));
+
+//   // تحديث الـ UI (الألوان والأيقونات)
+//   if (typeof refreshNavbarFavColor === "function") refreshNavbarFavColor();
+//   const favBtn = document.getElementById("fav-" + mealId);
+//   if (favBtn) favBtn.classList.toggle("active");
+
+//   // 2. مزامنة البيانات مع JSONbin (Server Sync)
+//   try {
+//     // جلب كل المستخدمين
+//     const getRes = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+//       method: "GET",
+//       headers: { "X-Master-Key": API_KEY },
+//     });
+
+//     if (!getRes.ok) throw new Error("Failed to fetch server data");
+
+//     const data = await getRes.json();
+//     let allUsers = data.record.users;
+
+//     // إيجاد المستخدم الحالي وتحديث مفضّلته
+//     const userIndex = allUsers.findIndex((u) => u.id === loggedUser.id);
+//     if (userIndex !== -1) {
+//       allUsers[userIndex].favorites = favorites;
+
+//       // رفع البيانات كاملة بالهيكل { users: [...] }
+//       const updateRes = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+//         method: "PUT",
+//         headers: {
+//           "Content-Type": "application/json",
+//           "X-Master-Key": API_KEY,
+//         },
+//         body: JSON.stringify({ users: allUsers }),
+//       });
+
+//       if (updateRes.ok) {
+//         console.log("Favorites synced with cloud!");
+//       }
+//     }
+//   } catch (err) {
+//     console.error("Cloud Sync Error:", err);
+//     // ملاحظة: حتى لو فشل السيرفر، التعديل لسه موجود في الـ SessionStorage بتاع اليوزر
+//   }
+// };
+
 window.handleFavoriteClick = async function (mealId, event) {
   if (event) {
     event.preventDefault();
@@ -130,8 +202,8 @@ window.handleFavoriteClick = async function (mealId, event) {
   const loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
 
   if (!loggedUser) {
+    // افترضنا إن الدالة دي موجودة عندك بتظهر تنبيه
     showLoginAlert();
-    return;
   }
 
   // 1. تحديث الـ Favorites محلياً (Local Logic)
@@ -144,53 +216,36 @@ window.handleFavoriteClick = async function (mealId, event) {
     favorites = favorites.filter((id) => id !== mealId);
   }
 
+  // تحديث الكائن في الذاكرة والـ SessionStorage فوراً لسرعة الـ UI
   loggedUser.favorites = favorites;
-
-  // تحديث الـ SessionStorage فوراً
   sessionStorage.setItem("loggedUser", JSON.stringify(loggedUser));
 
   // تحديث الـ UI (الألوان والأيقونات)
-  if (typeof refreshNavbarFavColor === "function") refreshNavbarFavColor();
+  refreshNavbarFavColor();
   const favBtn = document.getElementById("fav-" + mealId);
-  if (favBtn) favBtn.classList.toggle("active");
+  if (favBtn) {
+    isAdding
+      ? favBtn.classList.add("active")
+      : favBtn.classList.remove("active");
+  }
 
-  // 2. مزامنة البيانات مع JSONbin (Server Sync)
+  // 2. مزامنة البيانات مع Supabase (الفرق الجوهري هنا)
   try {
-    // جلب كل المستخدمين
-    const getRes = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
-      method: "GET",
-      headers: { "X-Master-Key": API_KEY },
-    });
+    // تحديث عمود favorites فقط للمستخدم الحالي بطلقة واحدة
+    const { error } = await supabaseClient
+      .from("users")
+      .update({ favorites: favorites }) // بنبعت المصفوفة الجديدة
+      .eq("id", loggedUser.id); // شرط التعديل: الـ ID يطابق اليوزر الحالي
 
-    if (!getRes.ok) throw new Error("Failed to fetch server data");
+    if (error) throw error;
 
-    const data = await getRes.json();
-    let allUsers = data.record.users;
-
-    // إيجاد المستخدم الحالي وتحديث مفضّلته
-    const userIndex = allUsers.findIndex((u) => u.id === loggedUser.id);
-    if (userIndex !== -1) {
-      allUsers[userIndex].favorites = favorites;
-
-      // رفع البيانات كاملة بالهيكل { users: [...] }
-      const updateRes = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Master-Key": API_KEY,
-        },
-        body: JSON.stringify({ users: allUsers }),
-      });
-
-      if (updateRes.ok) {
-        console.log("Favorites synced with cloud!");
-      }
-    }
+    console.log("✅ Favorites synced with Supabase!");
   } catch (err) {
-    console.error("Cloud Sync Error:", err);
-    // ملاحظة: حتى لو فشل السيرفر، التعديل لسه موجود في الـ SessionStorage بتاع اليوزر
+    console.error("❌ Supabase Sync Error:", err.message);
+    // ملحوظة: التعديل لسه شغال محلياً في الجلسة الحالية
   }
 };
+
 window.handleMealClick = function (event, mealId) {
   event.preventDefault();
   const isUserLoggedIn = sessionStorage.getItem("loggedUser");

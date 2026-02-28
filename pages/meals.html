@@ -1,207 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/img/logo.png" />
-    <title>Yummy</title>
-    <link href="/css/all.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/common.css" />
-    <link rel="stylesheet" href="/css/nav.css" />
-    <link rel="stylesheet" href="/css/pages.css" />
-    <link rel="stylesheet" href="/css/modal.css" />
 
-    <!-- <link rel="stylesheet" href="../css/ingMeals.css" /> -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Playfair+Display"
-      rel="stylesheet"
-    />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/img/logo.png" />
+  <title>Yummy</title>
+  <link href="/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../css/common.css" />
+  <link rel="stylesheet" href="/css/nav.css" />
+  <link rel="stylesheet" href="/css/pages.css" />
+  <link rel="stylesheet" href="/css/modal.css" />
 
-  <body>
-    <nav class="navbar fixed-top bg-black" id="topNav">
-      <div class="container d-flex align-items-center justify-content-between">
-        <!-- Logo -->
-        <a
-          class="navbar-brand d-flex align-items-center gap-1"
-          href="/index.html"
-        >
-          <img src="/img/logo.png" alt="Logo" style="width: 45px" />
-          <span class="brand-logo">Yummy</span>
-        </a>
+  <!-- <link rel="stylesheet" href="../css/ingMeals.css" /> -->
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet" />
+</head>
 
-        <!-- ===== DESKTOP MENU ===== -->
-        <ul class="navbar-nav flex-row gap-4 d-none d-lg-flex">
-          <li class="nav-item">
-            <a class="nav-link" href="/index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/all.html">All Meals</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/categories.html">Categories</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/area.html">Area</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/ingredient.html">Ingredients</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/Contact.html">Contact Us</a>
-          </li>
-        </ul>
+<body>
+  <nav class="navbar fixed-top bg-black" id="topNav">
+    <div class="container d-flex align-items-center justify-content-between">
+      <!-- Logo -->
+      <a class="navbar-brand d-flex align-items-center gap-1" href="/index.html">
+        <img src="/img/logo.png" alt="Logo" style="width: 45px" />
+        <span class="brand-logo">Yummy</span>
+      </a>
 
-        <!-- ===== DESKTOP RIGHT SIDE ===== -->
-        <div class="d-none d-lg-flex align-items-center gap-3">
-          <!-- User profile -->
-          <div class="userProfile d-none d-lg-flex align-items-center gap-3">
-            <a href="/pages/favorites.html" class="favourite" id="navbarFav">
-              <i class="fa-solid fa-heart"></i
-            ></a>
-            <span class="userNameDisplay text-warning fw-bold"></span>
-            <button class="logoutBtn btn btn-sm btn-outline-danger">
-              Logout
-            </button>
-          </div>
+      <!-- ===== DESKTOP MENU ===== -->
+      <ul class="navbar-nav flex-row gap-4 d-none d-lg-flex">
+        <li class="nav-item">
+          <a class="nav-link" href="/index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/all.html">All Meals</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/categories.html">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/area.html">Area</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/ingredient.html">Ingredients</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/Contact.html">Contact Us</a>
+        </li>
+      </ul>
 
-          <!-- Auth buttons -->
-          <div class="authButtons d-flex gap-2">
-            <button class="btn-login">Login</button>
-            <button class="btn-login registerBtn">Register</button>
-          </div>
+      <!-- ===== DESKTOP RIGHT SIDE ===== -->
+      <div class="d-none d-lg-flex align-items-center gap-3">
+        <!-- User profile -->
+        <div class="userProfile d-none d-lg-flex align-items-center gap-3">
+          <a href="/pages/favorites.html" class="favourite" id="navbarFav">
+            <i class="fa-solid fa-heart"></i></a>
+          <span class="userNameDisplay text-warning fw-bold"></span>
+          <button class="logoutBtn btn btn-sm btn-outline-danger">
+            Logout
+          </button>
         </div>
 
-        <!-- ===== MOBILE TOGGLER ===== -->
-        <button
-          class="navbar-toggler d-lg-none border-0"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#mobileNav"
-        >
-          <i class="fa-solid fa-bars text-warning fs-2"></i>
-        </button>
+        <!-- Auth buttons -->
+        <div class="authButtons d-flex gap-2">
+          <button class="btn-login">Login</button>
+          <button class="btn-login registerBtn">Register</button>
+        </div>
       </div>
-    </nav>
 
-    <!-- ===== MOBILE / TABLET SIDE NAV ===== -->
-    <div
-      class="offcanvas offcanvas-start bg-black text-white d-lg-none"
-      tabindex="-1"
-      id="mobileNav"
-    >
-      <div class="offcanvas-header">
-        <h5 class="text-warning">Yummy</h5>
-        <button
-          type="button"
-          class="btn-close btn-close-white"
-          data-bs-dismiss="offcanvas"
-        ></button>
-      </div>
-      <div class="offcanvas-body d-flex flex-column gap-4">
-        <ul class="navbar-nav text-center gap-3">
-          <li class="nav-item">
-            <a class="nav-link" href="/index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/all.html">All Meals</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/categories.html">Categories</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/area.html">Area</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/ingredient.html">Ingredients</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pages/Contact.html">Contact Us</a>
-          </li>
-        </ul>
+      <!-- ===== MOBILE TOGGLER ===== -->
+      <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#mobileNav">
+        <i class="fa-solid fa-bars text-warning fs-2"></i>
+      </button>
+    </div>
+  </nav>
 
-        <hr class="border-secondary" />
+  <!-- ===== MOBILE / TABLET SIDE NAV ===== -->
+  <div class="offcanvas offcanvas-start bg-black text-white d-lg-none" tabindex="-1" id="mobileNav">
+    <div class="offcanvas-header">
+      <h5 class="text-warning">Yummy</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column gap-4">
+      <ul class="navbar-nav text-center gap-3">
+        <li class="nav-item">
+          <a class="nav-link" href="/index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/all.html">All Meals</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/categories.html">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/area.html">Area</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/ingredient.html">Ingredients</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pages/Contact.html">Contact Us</a>
+        </li>
+      </ul>
 
-        <!-- Mobile Auth -->
-        <div class="d-flex flex-column align-items-center gap-3 w-100">
-          <div
-            class="userProfile d-none d-lg-none flex-column align-items-center gap-2 text-center w-100"
-          >
-            <a href="/pages/favorites.html" class="favourite" id="navbarFav">
-              <i class="fa-solid fa-heart"></i
-            ></a>
-            <span class="userNameDisplay text-warning fw-bold"></span>
-            <button class="logoutBtn btn btn-sm btn-outline-danger w-50">
-              Logout
-            </button>
-          </div>
+      <hr class="border-secondary" />
 
-          <div class="authButtons d-flex flex-column gap-2 w-100">
-            <button class="btn-login w-100">Login</button>
-            <button class="btn-login registerBtn w-100">Register</button>
-          </div>
+      <!-- Mobile Auth -->
+      <div class="d-flex flex-column align-items-center gap-3 w-100">
+        <div class="userProfile d-none d-lg-none flex-column align-items-center gap-2 text-center w-100">
+          <a href="/pages/favorites.html" class="favourite" id="navbarFav">
+            <i class="fa-solid fa-heart"></i></a>
+          <span class="userNameDisplay text-warning fw-bold"></span>
+          <button class="logoutBtn btn btn-sm btn-outline-danger w-50">
+            Logout
+          </button>
+        </div>
+
+        <div class="authButtons d-flex flex-column gap-2 w-100">
+          <button class="btn-login w-100">Login</button>
+          <button class="btn-login registerBtn w-100">Register</button>
         </div>
       </div>
     </div>
-    <div class="container my-2" id="cardsSection">
-      <div
-        id="mealsResult"
-        class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3"
-      ></div>
-    </div>
+  </div>
+  <div class="container my-2" id="cardsSection">
+    <div id="mealsResult" class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3"></div>
+  </div>
 
-    <div id="listModal" class="list-modal hidden">
-      <div class="list-modal-content">
-        <div class="list-modal-header">
-          <h3>Your Lists</h3>
-          <span class="close-modal">&times;</span>
+  <div id="listModal" class="list-modal hidden">
+    <div class="list-modal-content">
+      <div class="list-modal-header">
+        <h3>Your Lists</h3>
+        <span class="close-modal">&times;</span>
+      </div>
+
+      <div class="list-modal-body">
+        <div id="listsView">
+          <div id="listsContainer"></div>
         </div>
 
-        <div class="list-modal-body">
-          <div id="listsView">
-            <div id="listsContainer"></div>
-          </div>
+        <div id="createListView" class="hidden">
+          <form id="createListForm" class="create-list-form">
+            <div class="create-list-label-row">
+              <label for="listNameInput">List name</label>
+              <button type="button" class="close-form-btn" aria-label="Close create list form">
+                &times;
+              </button>
+            </div>
+            <input type="text" id="listNameInput" placeholder="Enter list name" minlength="2" maxlength="30"
+              autocomplete="off" required />
+            <p class="create-list-hint">Use a short, clear name (2-30 characters).</p>
 
-          <div id="createListView" class="hidden">
-            <form id="createListForm" class="create-list-form">
-              <div class="create-list-label-row">
-                <label for="listNameInput">List name</label>
-                <button
-                  type="button"
-                  class="close-form-btn"
-                  aria-label="Close create list form"
-                >
-                  &times;
-                </button>
-              </div>
-              <input
-                type="text"
-                id="listNameInput"
-                placeholder="Enter list name"
-                minlength="2"
-                maxlength="30"
-                autocomplete="off"
-                required
-              />
-              <p class="create-list-hint">Use a short, clear name (2-30 characters).</p>
-
-              <button type="submit">Create</button>
-            </form>
-          </div>
-        </div>
-
-        <div class="list-modal-footer" id="modalFooter">
-          <button class="create-list-btn">+ Create List</button>
+            <button type="submit">Create</button>
+          </form>
         </div>
       </div>
-    </div>
 
-    <!--script-->
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="/utils.js"></script>
-    <script type="module" src="/js/nav.js"></script>
-    <script type="module" src="/js/meals.js"></script>
-    <script type="module" src="/js/modal.js"></script>
-  </body>
+      <div class="list-modal-footer" id="modalFooter">
+        <button class="create-list-btn">+ Create List</button>
+      </div>
+    </div>
+  </div>
+
+  <!--script-->
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="module" src="/js/supabaseClient.js"></script>
+  <script type="module" src="/utils.js"></script>
+  <script type="module" src="/js/nav.js"></script>
+  <script type="module" src="/js/meals.js"></script>
+  <script type="module" src="/js/modal.js"></script>
+</body>
+
 </html>
