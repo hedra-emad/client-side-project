@@ -78,28 +78,57 @@ window.deleteMealFromList = async function (listId, mealId, event) {
   let loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
   if (!loggedUser) return;
 
+  // 1. تحديث البيانات في الـ Session (لوكال)
   const list = loggedUser.lists.find((l) => l.id === listId);
   if (!list) return;
 
-  // حذف الوجبة
-  list.items = list.items.filter((id) => id !== mealId);
+  // حذف الوجبة من القائمة
+  list.items = list.items.filter((id) => String(id) !== String(mealId));
 
-  // تحديث السيشن
+  // تحديث الـ Session Storage فوراً عشان اليوزر يحس بالسرعة
   sessionStorage.setItem("loggedUser", JSON.stringify(loggedUser));
-
-  // تحديث السيرفر
+  const BIN_ID = "69a2d1c243b1c97be9a6492a";
+  const API_KEY =
+    "$2a$10$aEr.fC3BTS7ZDuBTSASOP.zrzFXN7aAmAy.4gdn5q2chWkiJaFY1a";
+  // 2. تحديث السيرفر (JSONbin)
   try {
-    await fetch(`http://localhost:5501/users/${loggedUser.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        lists: loggedUser.lists,
-      }),
-    });
+    // نجيب كل المستخدمين الأول
+    const getResponse = await fetch(
+      `https://api.jsonbin.io/v3/b/${BIN_ID}/latest`,
+      {
+        method: "GET",
+        headers: { "X-Master-Key": API_KEY },
+      },
+    );
+
+    if (!getResponse.ok) throw new Error("Failed to fetch data");
+
+    const data = await getResponse.json();
+    let allUsers = data.record.users;
+
+    // نحدث بيانات المستخدم الحالي جوه المصفوفة الكبيرة
+    const userIndex = allUsers.findIndex((u) => u.id === loggedUser.id);
+    if (userIndex !== -1) {
+      allUsers[userIndex].lists = loggedUser.lists;
+
+      // نرفع الداتا كلها من تاني بالكامل (PUT)
+      await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Master-Key": API_KEY,
+        },
+        body: JSON.stringify({ users: allUsers }), // نرجعه للهيكل الأصلي اللي فيه users
+      });
+      console.log("Server updated successfully");
+    }
   } catch (err) {
-    console.log("Delete meal error:", err);
+    console.error("Delete meal server error:", err);
+    alert("Could not sync with server, but updated locally.");
   }
 
-  // إعادة الرسم
-  displayMeals(list.items);
+  // 3. إعادة رسم الوجبات في الصفحة
+  if (typeof displayMeals === "function") {
+    displayMeals(list.items);
+  }
 };

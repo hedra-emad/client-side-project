@@ -16,6 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
 
+  const BIN_ID = "69a2d1c243b1c97be9a6492a";
+  const API_KEY =
+    "$2a$10$aEr.fC3BTS7ZDuBTSASOP.zrzFXN7aAmAy.4gdn5q2chWkiJaFY1a";
+
   if (!loggedUser) {
     alert("You must log in first!");
     window.location.href = "login.html";
@@ -125,14 +129,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function updateUserLists(user) {
     try {
-      await fetch(`http://localhost:5501/users/${user.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ lists: user.lists }),
-      });
-      window.location.reload();
+      // 1. جلب كل البيانات الحالية من السيرفر
+      const getResponse = await fetch(
+        `https://api.jsonbin.io/v3/b/${BIN_ID}/latest`,
+        {
+          method: "GET",
+          headers: { "X-Master-Key": API_KEY },
+        },
+      );
+
+      if (!getResponse.ok) throw new Error("Failed to fetch users from server");
+
+      const data = await getResponse.json();
+      let allUsers = data.record.users;
+
+      // 2. تحديث قائمة الـ lists للمستخدم الحالي فقط داخل المصفوفة الكبيرة
+      const userIndex = allUsers.findIndex((u) => u.id === user.id);
+      if (userIndex !== -1) {
+        allUsers[userIndex].lists = user.lists;
+
+        // 3. رفع البيانات كاملة مرة أخرى باستخدام PUT
+        const updateResponse = await fetch(
+          `https://api.jsonbin.io/v3/b/${BIN_ID}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              "X-Master-Key": API_KEY,
+            },
+            body: JSON.stringify({ users: allUsers }),
+          },
+        );
+
+        if (updateResponse.ok) {
+          console.log("Lists updated successfully on server");
+          window.location.reload(); // إعادة التحميل للتأكد من مزامنة البيانات
+        }
+      }
     } catch (err) {
-      console.error("Error updating user lists:", err);
+      console.error("Error updating user lists on JSONbin:", err);
+      alert("Something went wrong while syncing with the server.");
     }
   }
 

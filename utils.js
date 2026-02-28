@@ -2,6 +2,9 @@
 import { refreshNavbarFavColor } from "./js/nav.js";
 let mealDetails = document.getElementById("mealDetails");
 
+const BIN_ID = "69a2d1c243b1c97be9a6492a";
+const API_KEY = "$2a$10$aEr.fC3BTS7ZDuBTSASOP.zrzFXN7aAmAy.4gdn5q2chWkiJaFY1a";
+
 export default async function getMealDetails(mealID) {
   let meal = await fetch(
     `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealID}`,
@@ -131,41 +134,63 @@ window.handleFavoriteClick = async function (mealId, event) {
     return;
   }
 
+  // 1. تحديث الـ Favorites محلياً (Local Logic)
   let favorites = loggedUser.favorites || [];
+  const isAdding = !favorites.includes(mealId);
 
-  if (favorites.includes(mealId)) {
-    favorites = favorites.filter((id) => id !== mealId);
-  } else {
+  if (isAdding) {
     favorites.push(mealId);
+  } else {
+    favorites = favorites.filter((id) => id !== mealId);
   }
 
   loggedUser.favorites = favorites;
 
+  // تحديث الـ SessionStorage فوراً
   sessionStorage.setItem("loggedUser", JSON.stringify(loggedUser));
-  refreshNavbarFavColor();
 
+  // تحديث الـ UI (الألوان والأيقونات)
+  if (typeof refreshNavbarFavColor === "function") refreshNavbarFavColor();
   const favBtn = document.getElementById("fav-" + mealId);
   if (favBtn) favBtn.classList.toggle("active");
 
+  // 2. مزامنة البيانات مع JSONbin (Server Sync)
   try {
-    const res = await fetch(`http://localhost:5501/users/${loggedUser.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        favorites: favorites,
-      }),
+    // جلب كل المستخدمين
+    const getRes = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+      method: "GET",
+      headers: { "X-Master-Key": API_KEY },
     });
 
-    if (!res.ok) {
-      throw new Error("Failed to update DB");
+    if (!getRes.ok) throw new Error("Failed to fetch server data");
+
+    const data = await getRes.json();
+    let allUsers = data.record.users;
+
+    // إيجاد المستخدم الحالي وتحديث مفضّلته
+    const userIndex = allUsers.findIndex((u) => u.id === loggedUser.id);
+    if (userIndex !== -1) {
+      allUsers[userIndex].favorites = favorites;
+
+      // رفع البيانات كاملة بالهيكل { users: [...] }
+      const updateRes = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Master-Key": API_KEY,
+        },
+        body: JSON.stringify({ users: allUsers }),
+      });
+
+      if (updateRes.ok) {
+        console.log("Favorites synced with cloud!");
+      }
     }
   } catch (err) {
-    console.log("DB Update Error:", err);
+    console.error("Cloud Sync Error:", err);
+    // ملاحظة: حتى لو فشل السيرفر، التعديل لسه موجود في الـ SessionStorage بتاع اليوزر
   }
 };
-
 window.handleMealClick = function (event, mealId) {
   event.preventDefault();
   const isUserLoggedIn = sessionStorage.getItem("loggedUser");
