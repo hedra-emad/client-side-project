@@ -198,16 +198,15 @@ window.handleFavoriteClick = async function (mealId, event) {
     event.preventDefault();
     event.stopPropagation();
   }
+  const loggedUserStr = sessionStorage.getItem("loggedUser");
 
-  const loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
-
-  if (!loggedUser) {
-    // افترضنا إن الدالة دي موجودة عندك بتظهر تنبيه
+  if (!loggedUserStr || loggedUserStr === "null") {
     showLoginAlert();
+    return; // stop here if user not logged in
   }
 
-  // 1. تحديث الـ Favorites محلياً (Local Logic)
-  let favorites = loggedUser.favorites || [];
+  const userData = JSON.parse(loggedUserStr) || {};
+  let favorites = Array.isArray(userData.favorites) ? userData.favorites : [];
   const isAdding = !favorites.includes(mealId);
 
   if (isAdding) {
@@ -216,11 +215,9 @@ window.handleFavoriteClick = async function (mealId, event) {
     favorites = favorites.filter((id) => id !== mealId);
   }
 
-  // تحديث الكائن في الذاكرة والـ SessionStorage فوراً لسرعة الـ UI
-  loggedUser.favorites = favorites;
-  sessionStorage.setItem("loggedUser", JSON.stringify(loggedUser));
+  userData.favorites = favorites;
 
-  // تحديث الـ UI (الألوان والأيقونات)
+  sessionStorage.setItem("loggedUser", JSON.stringify(userData));
   refreshNavbarFavColor();
   const favBtn = document.getElementById("fav-" + mealId);
   if (favBtn) {
@@ -228,18 +225,15 @@ window.handleFavoriteClick = async function (mealId, event) {
       ? favBtn.classList.add("active")
       : favBtn.classList.remove("active");
   }
-
   // 2. مزامنة البيانات مع Supabase (الفرق الجوهري هنا)
   try {
     // تحديث عمود favorites فقط للمستخدم الحالي بطلقة واحدة
     const { error } = await supabaseClient
       .from("users")
       .update({ favorites: favorites }) // بنبعت المصفوفة الجديدة
-      .eq("id", loggedUser.id); // شرط التعديل: الـ ID يطابق اليوزر الحالي
+      .eq("id", userData.id); // شرط التعديل: الـ ID يطابق اليوزر الحالي
 
     if (error) throw error;
-
-    console.log("✅ Favorites synced with Supabase!");
   } catch (err) {
     console.error("❌ Supabase Sync Error:", err.message);
     // ملحوظة: التعديل لسه شغال محلياً في الجلسة الحالية
