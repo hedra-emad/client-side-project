@@ -131,7 +131,7 @@ async function login() {
           favorites: user.favorites || [],
           lists: user.lists || [],
           loginAt: new Date().toISOString(),
-        }),
+        })
       );
       const urlParams = new URLSearchParams(window.location.search);
       const redirectParam = urlParams.get("redirect");

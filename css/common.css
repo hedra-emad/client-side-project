@@ -34,12 +34,12 @@ i {
   cursor: pointer;
 }
 
-#login-alert {
+#login-alert,
+#message {
   display: none;
   position: fixed;
   top: 20px;
   right: 20px;
-  background: linear-gradient(135deg, #f85032, #e73827);
   color: #fff;
   padding: 16px 24px;
   border-radius: 12px;
@@ -52,6 +52,15 @@ i {
   gap: 12px;
   animation: slideIn 0.5s ease forwards;
   transform: translateX(120%);
+}
+
+#login-alert {
+  background: linear-gradient(135deg, #f85032, #e73827);
+}
+
+#message {
+  background: linear-gradient(var(--yellow),yellow);
+
 }
 
 @keyframes slideIn {

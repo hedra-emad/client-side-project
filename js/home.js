@@ -1,9 +1,9 @@
-const mainContent = document.getElementById("mainContent");
+// const mainContent = document.getElementById("mainContent");
 
 async function getCategories() {
   try {
     let response = await fetch(
-      "https://www.themealdb.com/api/json/v1/1/categories.php",
+      "https://www.themealdb.com/api/json/v1/1/categories.php"
     );
     let data = await response.json();
 
@@ -54,12 +54,20 @@ function getRandomMeal() {
                     <a href="${targetPath}" class="text-decoration-none" 
                         ${!isUserLoggedIn ? "" : ""}>
                         <div class="card bg-dark text-white border-0 shadow-lg overflow-hidden rounded-4">
-                            <img src="${meal.strMealThumb}" class="card-img-top">
+                            <img src="${
+                              meal.strMealThumb
+                            }" class="card-img-top">
                             <div class="p-4 text-start">
-                                <h5 class="text-warning fw-bold mb-1">${meal.strMeal}</h5>
+                                <h5 class="text-warning fw-bold mb-1">${
+                                  meal.strMeal
+                                }</h5>
                                 
                                 <p class="mb-0 text-secondary small">
-                                    ${isUserLoggedIn ? "Click to view recipe →" : "Login to view recipe →"}
+                                    ${
+                                      isUserLoggedIn
+                                        ? "Click to view recipe →"
+                                        : "Login to view recipe →"
+                                    }
                                 </p>
                             </div>
                         </div>
@@ -67,21 +75,23 @@ function getRandomMeal() {
                 </div>`;
     } else {
       console.error("Error fetching meal:", xhr.status);
-      document.getElementById("randomMeal").innerHTML =
-        `<p class="text-danger">Failed to fetch meal. Try again!</p>`;
+      document.getElementById(
+        "randomMeal"
+      ).innerHTML = `<p class="text-danger">Failed to fetch meal. Try again!</p>`;
     }
   };
 
   xhr.onerror = function () {
     console.error("Request failed");
-    document.getElementById("randomMeal").innerHTML =
-      `<p class="text-danger">Request failed. Try again!</p>`;
+    document.getElementById(
+      "randomMeal"
+    ).innerHTML = `<p class="text-danger">Request failed. Try again!</p>`;
   };
 
   xhr.send();
 }
 
-const getStartedBtn = document.getElementById("getStartedBtn");
+// const getStartedBtn = document.getElementById("getStartedBtn");
 
 if (getStartedBtn) {
   getStartedBtn.onclick = function () {

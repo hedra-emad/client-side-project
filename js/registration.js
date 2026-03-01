@@ -143,6 +143,19 @@ form.addEventListener("submit", async function (e) {
     return;
   }
 
+  // التحقق من رقم الهاتف (مثال: 10 أرقام فقط)
+  const phonePattern = /^[0][0-9]{10}$/; // يبدأ بـ 0 ويليه 10 أرقام
+  if (!phonePattern.test(phone)) {
+    showError("Please enter a valid 11-digit phone number starting with 0");
+    return;
+  }
+
+  // التحقق من قوة كلمة المرور (مثال: 6 أحرف على الأقل)
+  if (password.length < 6) {
+    showError("Password must be at least 6 characters long");
+    return;
+  }
+
   // --- 2. عملية الربط مع Supabase ---
   try {
     // أ. التأكد من عدم تكرار الإيميل أو اسم المستخدم (Select)
@@ -184,7 +197,7 @@ form.addEventListener("submit", async function (e) {
         favorites: [],
         lists: [], //
         loginAt: new Date().toISOString(),
-      }),
+      })
     );
 
     form.reset();

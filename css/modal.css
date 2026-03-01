@@ -255,6 +255,14 @@
   outline-offset: 2px;
 }
 
+
+.user-list.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+
 /* animation */
 @keyframes scaleIn {
   from {

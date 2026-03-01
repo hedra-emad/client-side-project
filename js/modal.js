@@ -1,5 +1,5 @@
 import { supabaseClient } from "./supabaseClient.js";
-import { showLoginAlert } from "../utils.js";
+import { showLoginAlert, showAddMessage } from "../utils.js";
 document.addEventListener("DOMContentLoaded", () => {
   const listModal = document.getElementById("listModal");
   const listsContainer = document.getElementById("listsContainer");
@@ -40,11 +40,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let html = "";
     lists.forEach((list) => {
+      // فقط القوائم التي تحتوي على id
+      if (!list.id) return;
+
+      // التحقق من mealId قبل استخدامه
+      const isInList = mealId ? list.items?.includes(mealId) : false;
+
       html += `
-        <div class="user-list" onclick="addMealToList('${list.id}', '${mealId}')">
-          ${list.name}
-        </div>
-      `;
+      <div 
+        class="user-list ${isInList ? "disabled" : ""}" 
+        ${!isInList ? `onclick="addMealToList('${list.id}', '${mealId}')"` : ""}
+      >
+        ${list.name}
+      </div>
+    `;
     });
 
     listsContainer.innerHTML = html;
@@ -59,9 +68,13 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    renderLists(loggedUser.lists || [], mealId);
+    // لو mealId غير معرف، نعطيه null (لكن في هذه الحالة لن نضيفه للقوائم)
+    const safeMealId = mealId ?? null;
 
-    listModal.style.display = "flex";
+    renderLists(loggedUser.lists || [], safeMealId);
+
+    const listModal = document.getElementById("listModal");
+    if (listModal) listModal.style.display = "flex";
   };
 
   if (createListForm) {
@@ -109,13 +122,16 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("❌ Create list sync error:", err.message);
         // تنبيه لليوزر إن الداتا متسيفتش أونلاين بس لسه موجودة في الجلسة
         alert(
-          "Something went wrong saving to cloud, but your list is saved locally.",
+          "Something went wrong saving to cloud, but your list is saved locally."
         );
       }
 
       // 4. تحديث الـ UI وإخفاء الفورم
       if (typeof renderLists === "function") {
-        renderLists(loggedUser.lists, null);
+        renderLists(
+          loggedUser.lists.filter((list) => list.id),
+          null
+        );
       }
 
       if (createListView) createListView.classList.add("hidden");
@@ -187,13 +203,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (error) throw error;
 
-      console.log("✅ Meal added and synced with Supabase!");
+      // console.log("✅ Meal added and synced with Supabase!");
     } catch (err) {
       console.error("❌ Add meal sync error:", err.message);
       // البيانات لسه موجودة في الـ SessionStorage، فالمستخدم مش هيحس بمشكلة فورية
     }
-
-    alert(`Meal added to ${list.name}`);
+    // alert('added')
+    showAddMessage(list.name);
 
     // إغلاق المودال وإعادة حالته
     if (typeof resetModalState === "function") resetModalState();
