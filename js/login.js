@@ -133,7 +133,18 @@ async function login() {
           loginAt: new Date().toISOString(),
         }),
       );
-      window.location.href = "../index.html";
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirectParam = urlParams.get("redirect");
+      if (redirectParam) {
+        try {
+          const decoded = decodeURIComponent(redirectParam);
+          window.location.href = decoded;
+        } catch (e) {
+          window.location.href = "../index.html";
+        }
+      } else {
+        window.location.href = "../index.html";
+      }
     } else {
       showError("Username or password incorrect");
     }

@@ -1,4 +1,12 @@
 const loggedUser = JSON.parse(sessionStorage.getItem("loggedUser"));
+
+function getRepoBasePath() {
+  const path = window.location.pathname;
+  if (path.includes("/pages/")) {
+    return path.substring(0, path.indexOf("/pages/") + 1);
+  }
+  return path.endsWith("/") ? path : path.replace(/\/[^/]*$/, "/");
+}
 function updateGlobalNavbar() {
   const navbarFavIcon = document.querySelector("#navbarFav i");
 
@@ -21,7 +29,8 @@ function updateGlobalNavbar() {
 
       desktopUserName.style.cursor = "pointer";
       desktopUserName.onclick = () => {
-        window.location.href = `/pages/profile.html`;
+        const base = getRepoBasePath();
+        window.location.href = `${window.location.origin}${base}pages/profile.html`;
       };
     }
 
@@ -33,7 +42,8 @@ function updateGlobalNavbar() {
 
       mobileUserName.style.cursor = "pointer";
       mobileUserName.onclick = () => {
-        window.location.href = `/pages/profile.html`;
+        const base = getRepoBasePath();
+        window.location.href = `${window.location.origin}${base}pages/profile.html`;
       };
     }
   } else {
@@ -65,7 +75,8 @@ function updateGlobalNavbar() {
       mobileAuthButtons?.classList.remove("d-none");
 
       setTimeout(() => {
-        window.location.href = "/index.html";
+        const base = getRepoBasePath();
+        window.location.href = `${window.location.origin}${base}index.html`;
       }, 50);
     };
   });
@@ -85,11 +96,13 @@ document.addEventListener("DOMContentLoaded", updateGlobalNavbar);
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("btn-login")) {
     const currentUrl = encodeURIComponent(window.location.href);
-    window.location.href = `/pages/login.html?redirect=${currentUrl}`;
+    const base = getRepoBasePath();
+    window.location.href = `${window.location.origin}${base}pages/login.html?redirect=${currentUrl}`;
   }
   if (e.target.classList.contains("registerBtn")) {
     const currentUrl = encodeURIComponent(window.location.href);
-    window.location.href = `/pages/registration.html?redirect=${currentUrl}`;
+    const base = getRepoBasePath();
+    window.location.href = `${window.location.origin}${base}pages/registration.html?redirect=${currentUrl}`;
   }
 });
 
