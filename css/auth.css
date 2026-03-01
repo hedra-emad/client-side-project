@@ -4,7 +4,7 @@
   position: relative;
   height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
-    url("../img/background.png") center/cover no-repeat;
+    url("../image/background.png") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
