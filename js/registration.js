@@ -202,10 +202,18 @@ form.addEventListener("submit", async function (e) {
 
     form.reset();
 
-    const redirectUrl =
-      sessionStorage.getItem("redirectAfterLogin") || "../index.html";
-    sessionStorage.removeItem("redirectAfterLogin");
-    window.location.href = redirectUrl;
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectParam = urlParams.get("redirect");
+    if (redirectParam) {
+      try {
+        const decoded = decodeURIComponent(redirectParam);
+        window.location.href = decoded;
+      } catch (e) {
+        window.location.href = "../index.html";
+      }
+    } else {
+      window.location.href = "../index.html";
+    }
   } catch (error) {
     showError("Service unavailable, please try again later");
     console.error("Supabase Error:", error.message);

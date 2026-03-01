@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="/img/logo.png" />
+  <link rel="icon" href="../img/logo.png" />
   <title>Profile</title>
-  <link href="/css/all.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link href="../css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/bootstrap.min.css" />
   <link rel="stylesheet" href="../css/common.css" />
-  <link rel="stylesheet" href="/css/nav.css" />
-  <link rel="stylesheet" href="/css/profile.css" />
-  <link rel="stylesheet" href="/css/pages.css" />
+  <link rel="stylesheet" href="../css/nav.css" />
+  <link rel="stylesheet" href="../css/profile.css" />
+  <link rel="stylesheet" href="../css/pages.css" />
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet" />
 </head>
 
@@ -19,30 +19,30 @@
   <nav class="navbar fixed-top bg-black" id="topNav">
     <div class="container d-flex align-items-center justify-content-between">
       <!-- Logo -->
-      <a class="navbar-brand d-flex align-items-center gap-1" href="/index.html">
-        <img src="/img/logo.png" alt="Logo" style="width: 45px" />
+      <a class="navbar-brand d-flex align-items-center gap-1" href="../index.html">
+        <img src="../img/logo.png" alt="Logo" style="width: 45px" />
         <span class="brand-logo">Yummy</span>
       </a>
 
       <!-- ===== DESKTOP MENU ===== -->
       <ul class="navbar-nav flex-row gap-4 d-none d-lg-flex">
         <li class="nav-item">
-          <a class="nav-link" href="/index.html">Home</a>
+          <a class="nav-link" href="../index.html">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/pages/all.html">All Meals</a>
+          <a class="nav-link" href="all.html">All Meals</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/pages/categories.html">Categories</a>
+          <a class="nav-link" href="categories.html">Categories</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/pages/area.html">Area</a>
+          <a class="nav-link" href="area.html">Area</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/pages/ingredient.html">Ingredients</a>
+          <a class="nav-link" href="ingredient.html">Ingredients</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/pages/Contact.html">Contact Us</a>
+          <a class="nav-link" href="Contact.html">Contact Us</a>
         </li>
       </ul>
 
@@ -50,7 +50,7 @@
       <div class="d-none d-lg-flex align-items-center gap-3">
         <!-- User profile -->
         <div class="userProfile d-none d-lg-flex align-items-center gap-3">
-          <a href="/pages/favorites.html" class="favourite" id="navbarFav">
+          <a href="favorites.html" class="favourite" id="navbarFav">
             <i class="fa-solid fa-heart"></i></a>
           <span class="userNameDisplay text-warning fw-bold"></span>
           <button class="logoutBtn btn btn-sm btn-outline-danger">
@@ -82,22 +82,22 @@
     <div class="offcanvas-body d-flex flex-column gap-4">
       <ul class="navbar-nav text-center gap-3">
         <li class="nav-item">
-          <a class="nav-link" href="/index.html">Home</a>
+          <a class="nav-link" href="../index.html">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/pages/all.html">All Meals</a>
+          <a class="nav-link" href="all.html">All Meals</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/pages/categories.html">Categories</a>
+          <a class="nav-link" href="categories.html">Categories</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/pages/area.html">Area</a>
+          <a class="nav-link" href="area.html">Area</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/pages/ingredient.html">Ingredients</a>
+          <a class="nav-link" href="ingredient.html">Ingredients</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/pages/Contact.html">Contact Us</a>
+          <a class="nav-link" href="Contact.html">Contact Us</a>
         </li>
       </ul>
 
@@ -106,7 +106,7 @@
       <!-- Mobile Auth -->
       <div class="d-flex flex-column align-items-center gap-3 w-100">
         <div class="userProfile d-none d-lg-none flex-column align-items-center gap-2 text-center w-100">
-          <a href="/pages/favorites.html" class="favourite" id="navbarFav">
+          <a href="favorites.html" class="favourite" id="navbarFav">
             <i class="fa-solid fa-heart"></i></a>
           <span class="userNameDisplay text-warning fw-bold"></span>
           <button class="logoutBtn btn btn-sm btn-outline-danger w-50">
@@ -127,13 +127,13 @@
     <div id="listMeals" class="row row-cols-1 row-cols-md-2 row-cols-lg-4 gx-4 gy-2"></div>
     </main>
 
-    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script type="module" src="/js/supabaseClient.js"></script>
-    <script type="module" src="/utils.js"></script>
-    <script type="module" src="/js/nav.js"></script>
-    <script type="module" src="/js/list.js"></script>
-    <!-- <script type="module" src="/js/favorites.js"></script> -->
+    <script type="module" src="../js/supabaseClient.js"></script>
+    <script type="module" src="../utils.js"></script>
+    <script type="module" src="../js/nav.js"></script>
+    <script type="module" src="../js/list.js"></script>
+    <!-- <script type="module" src="../js/favorites.js"></script> -->
 </body>
 
 </html>
