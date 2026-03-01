@@ -2,7 +2,6 @@ import { supabaseClient } from "./supabaseClient.js";
 import { showLoginAlert, showAddMessage } from "../utils.js";
 document.addEventListener("DOMContentLoaded", () => {
   const listModal = document.getElementById("listModal");
-  const listsContainer = document.getElementById("listsContainer");
   const closeModalBtn = document.querySelector(".close-modal");
   const createListBtn = document.querySelector(".create-list-btn");
   const listsView = document.getElementById("listsView");
@@ -10,9 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeFormBtn = document.querySelector(".close-form-btn");
   const createListForm = document.getElementById("createListForm");
   const modalFooter = document.getElementById("modalFooter");
-  const BIN_ID = "69a2d1c243b1c97be9a6492a";
-  const API_KEY =
-    "$2a$10$aEr.fC3BTS7ZDuBTSASOP.zrzFXN7aAmAy.4gdn5q2chWkiJaFY1a";
+  let currentMealId = null; // ← Add this
   if (listModal) {
     listModal.classList.add("hidden");
   }
@@ -69,9 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // لو mealId غير معرف، نعطيه null (لكن في هذه الحالة لن نضيفه للقوائم)
-    const safeMealId = mealId ?? null;
+    currentMealId = mealId ?? null; // ← Store it
 
-    renderLists(loggedUser.lists || [], safeMealId);
+    renderLists(loggedUser.lists || [], currentMealId);
 
     const listModal = document.getElementById("listModal");
     if (listModal) listModal.style.display = "flex";
@@ -122,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("❌ Create list sync error:", err.message);
         // تنبيه لليوزر إن الداتا متسيفتش أونلاين بس لسه موجودة في الجلسة
         alert(
-          "Something went wrong saving to cloud, but your list is saved locally."
+          "Something went wrong saving to cloud, but your list is saved locally.",
         );
       }
 
@@ -130,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (typeof renderLists === "function") {
         renderLists(
           loggedUser.lists.filter((list) => list.id),
-          null
+          currentMealId,
         );
       }
 
@@ -171,6 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (createListView) createListView.classList.add("hidden");
     if (listsView) listsView.classList.remove("hidden");
     if (modalFooter) modalFooter.classList.remove("hidden");
+    currentMealId = null;
   }
 
   window.addMealToList = async function (listId, mealId) {
@@ -216,6 +214,4 @@ document.addEventListener("DOMContentLoaded", () => {
     const listModal = document.getElementById("listModal");
     if (listModal) listModal.style.display = "none";
   };
-
-  ///
 });

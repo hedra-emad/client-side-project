@@ -70,10 +70,6 @@ async function displayMeals(mealIds) {
 
 displayMeals(list.items);
 
-// window.toggleFavorite = function (mealId, event) {
-//   event.stopPropagation();
-// };
-
 window.deleteMealFromList = async function (listId, mealId, event) {
   event?.stopPropagation();
 

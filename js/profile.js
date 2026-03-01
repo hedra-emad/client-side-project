@@ -42,12 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
       container.innerHTML = `<p class="noHave">You haven't created any lists yet.</p>`;
       return;
     }
-  
+
     let html = "";
-  
+
     // فلترة القوائم اللي عندها id فقط
     lists
-      .filter((list) => list.id)  // 👈 إضافة هذه الفلترة
+      .filter((list) => list.id) // 👈 إضافة هذه الفلترة
       .forEach((list) => {
         html += `
           <div class="list-card" data-id="${list.id}">
@@ -57,16 +57,16 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `;
       });
-  
+
     container.innerHTML = html;
-  
+
     container.querySelectorAll(".list-card").forEach((card) => {
       card.addEventListener("click", () => {
         const listId = card.dataset.id;
         window.location.href = `list.html?id=${listId}`;
       });
     });
-  
+
     container.querySelectorAll(".settings-icon").forEach((icon) => {
       icon.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
-  
 
   window.openListSettings = function (e, listId) {
     e.stopPropagation();
