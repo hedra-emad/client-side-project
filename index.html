@@ -1,257 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Yummy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/img/logo.png" />
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Yummy</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="/img/logo.png" />
+    <link rel="stylesheet" href="/css/all.min.css" />
+    <link rel="icon" href="img/logo.png" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/common.css" />
+    <link rel="stylesheet" href="/css/nav.css" />
+    <link rel="stylesheet" href="/css/home.css" />
+  </head>
 
-  <link rel="stylesheet" href="/css/all.min.css" />
-  <link rel="icon" href="img/logo.png" />
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="/css/common.css" />
-  <link rel="stylesheet" href="/css/nav.css" />
-  <link rel="stylesheet" href="/css/home.css" />
-</head>
+  <body>
+    <!-- ===== TOP NAVBAR ===== -->
+    <nav class="navbar fixed-top bg-black" id="topNav">
+      <div class="container d-flex align-items-center justify-content-between">
+        <!-- Logo -->
+        <a
+          class="navbar-brand d-flex align-items-center gap-1"
+          href="/index.html"
+        >
+          <img src="img/logo.png" alt="Logo" style="width: 45px" />
+          <span class="brand-logo">Yummy</span>
+        </a>
 
-<body>
+        <!-- ===== DESKTOP MENU ===== -->
+        <ul class="navbar-nav flex-row gap-4 d-none d-lg-flex">
+          <li class="nav-item">
+            <a class="nav-link" href="/index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pages/all.html">All Meals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pages/categories.html">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pages/area.html">Area</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pages/ingredient.html">Ingredients</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pages/Contact.html">Contact Us</a>
+          </li>
+        </ul>
 
-  <!-- ===== TOP NAVBAR ===== -->
-  <nav class="navbar fixed-top bg-black" id="topNav">
-    <div class="container d-flex align-items-center justify-content-between">
-      <!-- Logo -->
-      <a class="navbar-brand d-flex align-items-center gap-1" href="/index.html">
-        <img src="img/logo.png" alt="Logo" style="width: 45px" />
-        <span class="brand-logo">Yummy</span>
-      </a>
-
-      <!-- ===== DESKTOP MENU ===== -->
-      <ul class="navbar-nav flex-row gap-4 d-none d-lg-flex">
-        <li class="nav-item">
-          <a class="nav-link" href="/index.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/all.html">All Meals</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/categories.html">Categories</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/area.html">Area</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/ingredient.html">Ingredients</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/Contact.html">Contact Us</a>
-        </li>
-      </ul>
-
-      <!-- ===== DESKTOP RIGHT SIDE ===== -->
-      <div class="d-none d-lg-flex align-items-center gap-3">
-        <!-- User profile -->
-        <div class="userProfile d-none d-lg-flex align-items-center gap-3">
-          <a href="/pages/favorites.html" class="favourite">
-            <i class="fa-solid fa-heart"></i></a>
-          <span class="userNameDisplay text-warning fw-bold"></span>
-          <button class="logoutBtn btn btn-sm btn-outline-danger">
-            Logout
-          </button>
-        </div>
-
-        <!-- Auth buttons -->
-        <div class="authButtons d-flex gap-2">
-          <button class="btn-login">Login</button>
-          <button class="btn-login registerBtn">Register</button>
-        </div>
-      </div>
-
-      <!-- ===== MOBILE TOGGLER ===== -->
-      <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="offcanvas"
-        data-bs-target="#mobileNav">
-        <i class="fa-solid fa-bars text-warning fs-2"></i>
-      </button>
-    </div>
-  </nav>
-
-  <!-- ===== MOBILE / TABLET SIDE NAV ===== -->
-  <div class="offcanvas offcanvas-start bg-black text-white d-lg-none" tabindex="-1" id="mobileNav">
-    <div class="offcanvas-header">
-      <h5 class="text-warning">Yummy</h5>
-      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-    </div>
-    <div class="offcanvas-body d-flex flex-column gap-4">
-      <ul class="navbar-nav text-center gap-3">
-        <li class="nav-item">
-          <a class="nav-link" href="/index.html">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/all.html">All Meals</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/categories.html">Categories</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/area.html">Area</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/ingredient.html">Ingredients</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/pages/Contact.html">Contact Us</a>
-        </li>
-      </ul>
-
-      <hr class="border-secondary" />
-
-      <!-- Mobile Auth -->
-      <div class="d-flex flex-column align-items-center gap-3 w-100">
-        <div class="userProfile d-none d-lg-none flex-column align-items-center gap-2 text-center w-100">
-          <a href="/pages/favorites.html" class="favourite">
-            <i class="fa-solid fa-heart"></i></a>
-          <span class="userNameDisplay text-warning fw-bold"></span>
-          <button class="logoutBtn btn btn-sm btn-outline-danger w-50">
-            Logout
-          </button>
-        </div>
-
-        <div class="authButtons d-flex flex-column gap-2 w-100">
-          <button class="btn-login w-100">Login</button>
-          <button class="btn-login registerBtn w-100">Register</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="main-content" id="mainContent">
-    <div class="hero">
-      <div class="text-center px-3">
-        <h1 class="brand-logo display-2">Yummy<span>😋</span></h1>
-        <p class="fs-5 text-light-50 mb-5 mt-3 fw-light">
-          Discover Delicious Meals From Around The World
-        </p>
-        <button id="getStartedBtn" class="btn-main">Get Started</button>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-6 mb-5 mb-md-0 text-center img-container">
-            <img src="/img/about.png" class="img-fluid w-100" />
+        <!-- ===== DESKTOP RIGHT SIDE ===== -->
+        <div class="d-none d-lg-flex align-items-center gap-3">
+          <!-- User profile -->
+          <div class="userProfile d-none d-lg-flex align-items-center gap-3">
+            <a href="/pages/favorites.html" class="favourite">
+              <i class="fa-solid fa-heart"></i
+            ></a>
+            <span class="userNameDisplay text-warning fw-bold"></span>
+            <button class="logoutBtn btn btn-sm btn-outline-danger">
+              Logout
+            </button>
           </div>
-          <div class="col-md-6 ps-md-5">
-            <h2 class="h1 fw-bold mb-4">
-              About <span class="text-warning">Yummy</span>
-            </h2>
-            <p class="text-secondary">
-              Yummy is a modern food discovery platform built for people who
-              love exploring new meals and flavors from around the world.
-            </p>
-            <p class="text-secondary small">
-              Using real data from a trusted public API, we make cooking
-              simple and enjoyable for everyone.
-            </p>
+
+          <!-- Auth buttons -->
+          <div class="authButtons d-flex gap-2">
+            <button class="btn-login">Login</button>
+            <button class="btn-login registerBtn">Register</button>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="section section-dark-alt">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-6 pe-md-5">
-            <h2 class="h1 fw-bold mb-4">
-              Explore <span class="text-warning">Real Recipes</span>
-            </h2>
-            <p class="text-secondary">
-              All meals are fetched from a real API, which means new meals
-              appear every time you visit. Explore different cultures today.
-            </p>
-          </div>
-          <div class="col-md-6 mt-5 mt-md-0 text-center img-container">
-            <img src="/img/section.png" class="img-fluid w-100" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="container">
-        <h2 class="text-center h2 fw-bold mb-5">Meal Categories</h2>
-        <div class="row g-4" id="categories"></div>
-      </div>
-    </div>
-
-    <div class="section section-dark-alt text-center">
-      <div class="container">
-        <h2 class="mb-5 h2 fw-bold">Feeling Hungry?🍔</h2>
-        <button class="btn-main" onclick="getRandomMeal()">
-          Get Random Meal
+        <!-- ===== MOBILE TOGGLER ===== -->
+        <button
+          class="navbar-toggler d-lg-none border-0"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#mobileNav"
+        >
+          <i class="fa-solid fa-bars text-warning fs-2"></i>
         </button>
-        <div id="randomMeal" class="row justify-content-center mt-5"></div>
+      </div>
+    </nav>
+
+    <!-- ===== MOBILE / TABLET SIDE NAV ===== -->
+    <div
+      class="offcanvas offcanvas-start bg-black text-white d-lg-none"
+      tabindex="-1"
+      id="mobileNav"
+    >
+      <div class="offcanvas-header">
+        <h5 class="text-warning">Yummy</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+        ></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column gap-4">
+        <ul class="navbar-nav text-center gap-3">
+          <li class="nav-item">
+            <a class="nav-link" href="/index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pages/all.html">All Meals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pages/categories.html">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pages/area.html">Area</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pages/ingredient.html">Ingredients</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pages/Contact.html">Contact Us</a>
+          </li>
+        </ul>
+
+        <hr class="border-secondary" />
+
+        <!-- Mobile Auth -->
+        <div class="d-flex flex-column align-items-center gap-3 w-100">
+          <div
+            class="userProfile d-none d-lg-none flex-column align-items-center gap-2 text-center w-100"
+          >
+            <a href="/pages/favorites.html" class="favourite">
+              <i class="fa-solid fa-heart"></i
+            ></a>
+            <span class="userNameDisplay text-warning fw-bold"></span>
+            <button class="logoutBtn btn btn-sm btn-outline-danger w-50">
+              Logout
+            </button>
+          </div>
+
+          <div class="authButtons d-flex flex-column gap-2 w-100">
+            <button class="btn-login w-100">Login</button>
+            <button class="btn-login registerBtn w-100">Register</button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Footer  -->
-    <footer>
-      <div class="container">
-        <div class="row g-5">
-          <div class="col-md-5">
-            <h3 class="brand-logo mb-4">Yummy<span>😋</span></h3>
-            <p class="small pe-md-5">
-              Your ultimate destination to explore global recipes and culinary
-              secrets from every corner of the world. Cook like a pro with our
-              easy-to-follow meal guides.
-            </p>
-            <div class="footer-social-links">
-              <a href="#" class="fb"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="tw"><i class="fab fa-twitter"></i></a>
-              <a href="#" class="inst"><i class="fab fa-instagram"></i></a>
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <h5 class="footer-title">Quick Links</h5>
-            <ul class="footer-links">
-              <li><a href="/pages/all.html">Allarch Meals</a></li>
-              <li><a href="/pages/categories.html">Categories</a></li>
-              <li><a href="/pages/area.html">Area</a></li>
-              <li><a href="/pages/ingredient.html">Ingredients</a></li>
-              <li><a href="/pages/Contact.html">Contact Us</a></li>
-            </ul>
-          </div>
-
-          <div class="col-md-4">
-            <h5 class="footer-title">Contact Info</h5>
-            <div class="footer-contact-item">
-              <i class="fas fa-location-dot"></i>
-              <span>Egypt-Qena</span>
-            </div>
-            <div class="footer-contact-item">
-              <i class="fas fa-phone"></i>
-              <span>+1 234 567 890</span>
-            </div>
-            <div class="footer-contact-item">
-              <i class="fas fa-envelope"></i>
-              <span>hello@yummy.com</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="copyright-bar">
-          © 2026 YUMMY 😋 | ALL RIGHTS RESERVED. DESIGNED WITH ❤️ FOR FOOD
-          LOVERS.
+    <div class="main-content" id="mainContent">
+      <div class="hero">
+        <div class="text-center px-3">
+          <h1 class="brand-logo display-2">Yummy<span>😋</span></h1>
+          <p class="fs-5 text-light-50 mb-5 mt-3 fw-light">
+            Discover Delicious Meals From Around The World
+          </p>
+          <button id="getStartedBtn" class="btn-main">Get Started</button>
         </div>
       </div>
-    </footer>
-  </div>
 
-  <script src="/js/bootstrap.bundle.min.js"></script>
-  <script type="module" src="/js/nav.js"></script>
-  <script src="/js/home.js"></script>
-  <!-- <script src="/js/favorites.js"></script> -->
-</body>
+      <div class="section">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6 mb-5 mb-md-0 text-center img-container">
+              <img src="/img/about.png" class="img-fluid w-100" />
+            </div>
+            <div class="col-md-6 ps-md-5">
+              <h2 class="h1 fw-bold mb-4">
+                About <span class="text-warning">Yummy</span>
+              </h2>
+              <p class="text-secondary">
+                Yummy is a modern food discovery platform built for people who
+                love exploring new meals and flavors from around the world.
+              </p>
+              <p class="text-secondary small">
+                Using real data from a trusted public API, we make cooking
+                simple and enjoyable for everyone.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div class="section section-dark-alt">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6 pe-md-5">
+              <h2 class="h1 fw-bold mb-4">
+                Explore <span class="text-warning">Real Recipes</span>
+              </h2>
+              <p class="text-secondary">
+                All meals are fetched from a real API, which means new meals
+                appear every time you visit. Explore different cultures today.
+              </p>
+            </div>
+            <div class="col-md-6 mt-5 mt-md-0 text-center img-container">
+              <img src="/img/section.png" class="img-fluid w-100" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+          <h2 class="text-center h2 fw-bold mb-5">Meal Categories</h2>
+          <div class="row g-4" id="categories"></div>
+        </div>
+      </div>
+
+      <div class="section section-dark-alt text-center">
+        <div class="container">
+          <h2 class="mb-5 h2 fw-bold">Feeling Hungry?🍔</h2>
+          <button class="btn-main" onclick="getRandomMeal()">
+            Get Random Meal
+          </button>
+          <div id="randomMeal" class="row justify-content-center mt-5"></div>
+        </div>
+      </div>
+
+      <!-- Footer  -->
+      <footer>
+        <div class="container">
+          <div class="row g-5">
+            <div class="col-md-5">
+              <h3 class="brand-logo mb-4">Yummy<span>😋</span></h3>
+              <p class="small pe-md-5">
+                Your ultimate destination to explore global recipes and culinary
+                secrets from every corner of the world. Cook like a pro with our
+                easy-to-follow meal guides.
+              </p>
+              <div class="footer-social-links">
+                <a href="#" class="fb"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="tw"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="inst"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <h5 class="footer-title">Quick Links</h5>
+              <ul class="footer-links">
+                <li><a href="/pages/all.html">Allarch Meals</a></li>
+                <li><a href="/pages/categories.html">Categories</a></li>
+                <li><a href="/pages/area.html">Area</a></li>
+                <li><a href="/pages/ingredient.html">Ingredients</a></li>
+                <li><a href="/pages/Contact.html">Contact Us</a></li>
+              </ul>
+            </div>
+
+            <div class="col-md-4">
+              <h5 class="footer-title">Contact Info</h5>
+              <div class="footer-contact-item">
+                <i class="fas fa-location-dot"></i>
+                <span>Egypt-Qena</span>
+              </div>
+              <div class="footer-contact-item">
+                <i class="fas fa-phone"></i>
+                <span>+1 234 567 890</span>
+              </div>
+              <div class="footer-contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>hello@yummy.com</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="copyright-bar">
+            © 2026 YUMMY 😋 | ALL RIGHTS RESERVED. DESIGNED WITH ❤️ FOR FOOD
+            LOVERS.
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="/js/nav.js"></script>
+    <script src="/js/home.js"></script>
+    <!-- <script src="/js/favorites.js"></script> -->
+  </body>
 </html>
